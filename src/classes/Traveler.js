@@ -3,12 +3,20 @@ class Traveler {
         this.id = data.id;
         this.name = data.name;
         this.travelerType = data.travelerType;
-        this.trips = [];
+        this.trips = []
     }
 
-    findAllTripsByTraveler(tripData) {
-        this.trips = tripData.filter(trip => trip.userID === this.id)
+    findAllTripsByTraveler(tripsData) {
+        return this.trips = tripsData.filter(trip => this.id === trip.userID)
     }
+
+    returnTravelersFirstName(){
+        return this.name.split(" ")[0]
+    }
+
+    // calculateTotalCost(tripsData, destinationData) {
+    //     this.findAllTripsByTraveler(tripsData)
+    // }
 
 }
 
