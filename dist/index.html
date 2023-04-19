@@ -1,16 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Webpack Starter Kit</title>
-</head>
-<body>
-  <img src="./images/turing-logo.png" alt="turing logo">
-  
-  <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
-  <script src="bundle.js"></script>
 
-</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vagabond Ventures</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="header-image">
+        <div class="header-container">
+          <img src="./images/logo-main.png" alt="logo for Vagabond Ventures with rainbow sky and plane">
+          <h1 class="header-title">Vagabond Ventures</h1>
+        </div>
+      </div>
+    </header>
+    <section class="main-section-container">
+      <nav class="nav-section" id="tripPlanning">
+        <h2>Let's Go Somewhere ✈︎ </h2>
+        <form class="trip-form" id="newTripForm">
+          <label for="calendarStart" id="calendarStartLabel" class="calendar-intake">Takeoff</label>
+          <input type="date" name="calendarStart" class="new-trip-intake" id="calendarStart" required>
+          <label for="calendarEnd" id="calendarEndLabel" class="calendar-intake">Return</label>
+          <input type="date" name="calendarEnd" class="new-trip-intake" id="calendarEnd" required>
+          <label for="travelersInput" class="travelers-intake" id="traverlersIntakeLabel">Number of
+            Travelers</label>
+          <input type="number" name="travelersInput" class="travelers-input new-trip-input" id="travelersInput" min="1"
+            max="50" required>
+          <label for="destinations" id="destinationLabel" class="destinations-input">Destinations</label>
+          <select class="destinations new-trip-input" name="destinations" type="text" id="destinations" required>
+            <option class="destinations" value="">Destinations</option>
+          </select>
+          <div class="estimated-button-container">
+            <button class="estimated-button" id="estimateButton">Get a quote</button>
+          </div>
+        </form>
+        <div class="navigation-user-card">
+          <h2 class="navigation-user-welcome">Welcome Back </h2>
+          <p class="navigation-stats-sent">Here are your stats</p>
+          <p class="navigation-stats-invested">You have invested in your happiness</p>
+        </div>
+      </nav>
+    </section>
+    <main class="all-trips">
+      <h2 class="main-title">Your Trips</h2>
+      <section class="main-container-buttons">
+        <button class="main-button" type="button" name="button">All trips</button>
+        <button class="main-button">Approved Trips</button>
+        <button class="main-button">Pending Trips</button>
+      </section>
+      <section class="card-grid">
+        <section class="card">
+          <h4 card-title>City, State</h4>
+          <img class="card-holder-img"
+            src=""
+            alt="" alt="">
+          <div class=card-text>
+            <p class="card-travelers"><b>Travelers:</b></p>
+            <p class="card-start-date"><b>Start Date:</b></p>
+            <p class="card-duration"><b>Duration:</b></p>
+            <p class="card-status"><b>Status:</b></p>
+          </div>
+        </section>
+      </section>
+      </nav>
+    </main>
+    <img src="./images/turing-logo.png" alt="turing logo">
+    <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
+    <script src="bundle.js"></script>
+  </body>
+
 </html>
