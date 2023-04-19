@@ -12,8 +12,10 @@
     <header>
       <div class="header-image">
         <div class="header-container">
-          <img src="./images/logo-main.png" alt="logo for Vagabond Ventures with rainbow sky and plane">
-          <h1 class="header-title">Vagabond Ventures</h1>
+          <div class="logo">
+            <img class="logo-image"src="./images/logo-main.png" alt="logo for Vagabond Ventures with rainbow sky and plane">
+          </div>
+          <!-- <h1 class="header-title">Vagabond Ventures</h1> -->
         </div>
       </div>
     </header>
@@ -43,31 +45,29 @@
           <p class="navigation-stats-invested">You have invested in your happiness</p>
         </div>
       </nav>
-    </section>
-    <main class="all-trips">
-      <h2 class="main-title">Your Trips</h2>
-      <section class="main-container-buttons">
-        <button class="main-button" type="button" name="button">All trips</button>
-        <button class="main-button">Approved Trips</button>
-        <button class="main-button">Pending Trips</button>
-      </section>
-      <section class="card-grid">
-        <section class="card">
-          <h4 card-title>City, State</h4>
-          <img class="card-holder-img"
-            src=""
-            alt="" alt="">
-          <div class=card-text>
-            <p class="card-travelers"><b>Travelers:</b></p>
-            <p class="card-start-date"><b>Start Date:</b></p>
-            <p class="card-duration"><b>Duration:</b></p>
-            <p class="card-status"><b>Status:</b></p>
-          </div>
+      <main class="all-trips">
+        <h2 class="main-title">Your Trips</h2>
+        <section class="main-container-buttons">
+          <button class="main-button" type="button" name="button">Past trips</button>
+          <button class="main-button">Upcoming Trips</button>
+          <button class="main-button">Pending Trips</button>
         </section>
-      </section>
-      </nav>
-    </main>
-    <img src="./images/turing-logo.png" alt="turing logo">
+        <section class="card-grid">
+          <section class="card">
+            <h4 card-title>City, State</h4>
+            <img class="card-holder-img" src="" alt="" alt="">
+            <div class=card-text>
+              <p class="card-travelers"><b>Travelers:</b></p>
+              <p class="card-start-date"><b>Start Date:</b></p>
+              <p class="card-duration"><b>Duration:</b></p>
+              <p class="card-status"><b>Status:</b></p>
+            </div>
+          </section>
+        </section>
+        </nav>
+      </main>
+    </section>
+    <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
     <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
     <script src="bundle.js"></script>
   </body>
