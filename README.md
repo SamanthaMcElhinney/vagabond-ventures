@@ -1,4 +1,4 @@
-# Webpack Starter Kit
+# READ ME
 
 ## Clone This Repo
 
