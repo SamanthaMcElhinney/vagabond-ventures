@@ -1,3 +1,5 @@
+import DestinationRepository from "./Destination-Repo";
+
 class Trip {
   constructor(tripInfo) {
     this.id = tripInfo.id;
@@ -15,11 +17,12 @@ class Trip {
     const total =
       (this.travelers * destination.estimatedFlightCostPerPerson) +
       (this.travelers * destination.estimatedLodgingCostPerDay)
-    return total;
+      return total;
   };
   calculateAgentFee(destinationData) {
     const tripCost = this.calculateTripCost(destinationData);
     const agentFee = (tripCost * .10).toFixed(2);
+    console.log(agentFee)
     return Number(agentFee);
   };
 
