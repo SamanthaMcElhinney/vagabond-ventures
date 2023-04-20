@@ -1,7 +1,6 @@
 import chai from "chai";
 const expect = chai.expect;
 import Traveler from "../src/classes/Traveler";
-import Trip from "../src/classes/Trip";
 import travelersTestData from "./Travelers-test-data";
 import tripData from "./Trip-test-data";
 
@@ -28,6 +27,7 @@ describe("Traveler", () => {
     it("should have a trips property that starts as an empty array", () => {
         expect(traveler.trips).to.deep.equal([])
     })
+
     it("should be able to find all the trips by a traveler", () => {
         expect(traveler.findAllTripsByTraveler(tripData)).to.deep.equal([
           {
