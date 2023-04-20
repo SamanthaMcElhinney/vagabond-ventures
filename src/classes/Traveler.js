@@ -41,16 +41,15 @@ class Traveler {
     });
   }
 
-  calculateTotalSpentByTraveler(destinationData) {
-    const total = this.trips.reduce((acc, trip) => {
-      console.log(trip, "trip");
+  calculateTotalSpentByTraveler(tripData, destinationData) {
+    let trips = this.findAllTripsByTraveler(tripData);
+    return trips.reduce((acc, trip) => {
       acc +=
         trip.calculateAgentFee(destinationData) +
-        trip.calculateTripCost(destinationData);
+        trip.calculateTripCost(destinationData)
+        console.log(acc, "acc")
       return acc;
-    }, 0);
-    console.log(total);
-    return total;
+    },0);
   }
 };
 
