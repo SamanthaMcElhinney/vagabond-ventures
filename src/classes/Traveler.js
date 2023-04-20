@@ -23,6 +23,15 @@ class Traveler {
     return this.trips.filter((trip) => trip.status === status);
   }
 
+  filterPastTrips(date) {
+    return this.trips.filter((trip) => {
+      return (
+        dayjs(trip.date).format("YYYY/MM/DD") <=
+        dayjs(date).format("YYYY/MM/DD")
+      );
+    });
+  }
+
   filterUpcomingTrips(date) {
     return this.trips.filter((trip) => {
       return (
@@ -31,10 +40,18 @@ class Traveler {
       );
     });
   }
-// Traveler: Calculate Total Spent on Trips by Traveler
-//match trip id to destination id
-//add total 
 
-}
+  calculateTotalSpentByTraveler(destinationData) {
+    const total = this.trips.reduce((acc, trip) => {
+      console.log(trip, "trip");
+      acc +=
+        trip.calculateAgentFee(destinationData) +
+        trip.calculateTripCost(destinationData);
+      return acc;
+    }, 0);
+    console.log(total);
+    return total;
+  }
+};
 
 export default Traveler;
