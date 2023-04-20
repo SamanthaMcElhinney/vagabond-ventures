@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
     <title>Vagabond Ventures</title>
   </head>
-
   <body>
     <header>
-      <div class="header-image">
+      <div class="header">
+        <!-- <div class="header-stripes">
+          <img class="stripes" src="./images/rainbow.jpg">
+        </div> -->
         <div class="header-container">
           <div class="logo">
             <img class="logo-image"src="./images/logo-main.png" alt="logo for Vagabond Ventures with rainbow sky and plane">
@@ -21,7 +25,7 @@
     </header>
     <section class="main-section-container">
       <nav class="nav-section" id="tripPlanning">
-        <h2>Let's Go Somewhere ✈︎ </h2>
+        <h2 class="nav-greeting">Let's Go Somewhere ✈︎ </h2>
         <form class="trip-form" id="newTripForm">
           <label for="calendarStart" id="calendarStartLabel" class="calendar-intake">Takeoff</label>
           <input type="date" name="calendarStart" class="new-trip-intake" id="calendarStart" required>
@@ -48,12 +52,12 @@
       <main class="all-trips">
         <h2 class="main-title">Your Trips</h2>
         <section class="main-container-buttons">
-          <button class="main-button" type="button" name="button">Past trips</button>
+          <button class="main-button" id="pastTripsButton"type="button" name="button">Past trips</button>
           <button class="main-button">Upcoming Trips</button>
           <button class="main-button">Pending Trips</button>
         </section>
-        <section class="card-grid">
-          <section class="card">
+        <section class="card-grid" id="cardGrid">
+          <section class="card" id="usersCard">
             <h4 card-title>City, State</h4>
             <img class="card-holder-img" src="" alt="" alt="">
             <div class=card-text>
@@ -71,5 +75,4 @@
     <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
     <script src="bundle.js"></script>
   </body>
-
 </html>
