@@ -95,8 +95,9 @@ describe("Traveler", () => {
     }, ]);
   })
   it("should be able to calculate the total spent by a traveler", () => {
+     traveler.findAllTripsByTraveler(tripData);
     expect(
-      traveler.calculateTotalSpentByTraveler(destinationTestData)).to.equal();
+      traveler.calculateTotalSpentByTraveler(tripData, destinationTestData)).to.equal(6765);
   });
 
 });
