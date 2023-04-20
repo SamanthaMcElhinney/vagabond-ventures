@@ -1,7 +1,6 @@
 import chai from "chai";
 const expect = chai.expect;
 import TravelerRepository from "../src/classes/Traveler-Repo";
-import Traveler from "../src/classes/Traveler";
 import travelersTestData from "./Travelers-test-data";
 
 describe("TravelerRepository", () => {
