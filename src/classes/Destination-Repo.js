@@ -1,13 +1,7 @@
 class DestinationRepository {
-    constructor(destinationData, tripData){
+    constructor(destinationData){
         this.destinations = destinationData
-        this.trips = tripData
     };
-
-    findDestinationById(id) {
-        const destination = this.destinations.find(destination => destination.id === id)
-        return destination
-    }
 
     findDestinationByName(name){
         const destination = this.destinations.find(destination => destination.destination === name)
