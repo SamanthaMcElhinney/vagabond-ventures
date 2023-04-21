@@ -12,6 +12,7 @@
   <body>
     <header>
       <div class="header">
+            <h1 class="header-title">Just Take The Trip!</h1>
         <!-- <div class="header-stripes">
           <img class="stripes" src="./images/rainbow.jpg">
         </div> -->
@@ -19,7 +20,6 @@
           <div class="logo">
             <img class="logo-image"src="./images/logo-main.png" alt="logo for Vagabond Ventures with rainbow sky and plane">
           </div>
-          <!-- <h1 class="header-title">Vagabond Ventures</h1> -->
         </div>
       </div>
     </header>
@@ -50,15 +50,17 @@
         </div>
       </nav>
       <main class="all-trips">
-        <h2 class="main-title">Your Trips</h2>
+        <!-- <h2 class="main-title">Your Trips</h2> -->
         <section class="main-container-buttons">
           <button class="main-button" id="pastTripsButton"type="button" name="button">Past trips</button>
-          <button class="main-button">Upcoming Trips</button>
-          <button class="main-button">Pending Trips</button>
+          <button class="main-button" id="upcomingTripsButton" type="button" name="button">Upcoming Trips</button>
+          <button class="main-button" id="pendingTripsButton" type="button" name="button">Pending Trips</button>
+        </section>
+        <section class="error-handling-main" id="errorHandlingMain">
         </section>
         <section class="card-grid" id="cardGrid">
           <section class="card" id="usersCard">
-            <h4 card-title>City, State</h4>
+            <p class="card-title">City, State</p>
             <img class="card-holder-img" src="" alt="" alt="">
             <div class=card-text>
               <p class="card-travelers"><b>Travelers:</b></p>
