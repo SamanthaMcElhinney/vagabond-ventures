@@ -22,8 +22,10 @@ console.log(dayjs);
 //query selectors:
 const pastTripsButton = document.querySelector("#pastTripsButton");
 const usersCard = document.querySelector("#cardGrid");
-const usersStats = document.querySelector(".navigation-user-card");
-const userCard = document.querySelector(".navigation-user-card");
+const userWelcomeCard = document.querySelector(".navigation-user-card");
+const upcomingTripsButtons = document.querySelector("#upcomingTripsButton");
+const pendingTripsButton = document.querySelector("#pendingTripsButton");
+const errorHandlingContainer = document.querySelector("#errorHandlingMain");
 
 //Global variables
 let allTrips;
@@ -33,7 +35,19 @@ let currentTraveler;
 
 let date = dayjs().format("YYYY/MM/DD");
 console.log(date, "date");
-console.log("This is the JavaScript entry file - your code begins here.");
+
+//event listeners
+pastTripsButton.addEventListener("click", () => {
+  renderPastTrips(allTrips, currentTraveler, date);
+});
+
+upcomingTripsButtons.addEventListener("click", () => {
+renderUpcomingTrips(allTrips, currentTraveler, date); 
+})
+
+pendingTripsButton.addEventListener("click", () => {
+renderPendingTrips(currentTraveler)
+})
 
 // import API Calls
 import {
@@ -57,7 +71,7 @@ const displayUser = (
   allDestinations,
   allTrips
 ) => {
-  userCard.innerHTML = ` <div class="navigation-user-card">
+  userWelcomeCard.innerHTML = ` <div class="navigation-user-card">
      <h2 class="navigation-user-welcome">Welcome back ${currentTraveler.returnTravelersFirstName()}!</h2>
      <p>I love that you are a ${currentTraveler.travelerType} ✨</p>
      <p class="navigation-stats-sent">Here are your stats:</p>
@@ -68,25 +82,72 @@ const displayUser = (
       </div>`;
 };
 
-pastTripsButton.addEventListener("click", () => {
-  renderPastTrips(allTrips, currentTraveler, date);
-});
 
+const renderUpcomingTrips = (allTrips, currentTraveler, date) => {
+    let trips = allTrips.returnFutureTrips(currentTraveler.id, date)
+    if (trips.length === 0) {
+      errorHandlingContainer.innerHTML += `
+       <p Sorry ${currentTraveler.name}! You don't have any upcomding trips scheduled></p>
+       `;
+    } else {
+      usersCard.innerHTML = " ";
+      trips.forEach((trip) => {
+        usersCard.innerHTML += `
+       <section class="card-grid" id="cardGrid">
+       <section class="card" id="usersCard">
+       <h4 card-title></h4>
+       <img class="card-holder-img" src="" alt="" alt="">
+       <div class=card-text>
+       <p class="card-travelers"><b>Travelers: ${trip.travelers}</b></p>
+       <p class="card-start-date"><b>Start Date: ${trip.date}</b></p>
+       <p class="card-duration"><b>Duration: ${trip.duration}days</b> </p>
+       <p class="card-status"><b>Status: ${trip.status}</b></p>
+       `;
+      });
+    }
+}
 
-const renderPastTrips = (allTrips, currentTraveler, date) => {
+const renderPastTrips = (allTrips, currentTraveler, date, allDestinations) => {
   let trips = allTrips.returnPastTrips(currentTraveler.id, date)
+//   let destinations = allDestinations.getSingleDestinationById(
+// )
+  usersCard.innerHTML = " ";
+  trips.forEach((trip) => {
+    // destinations.forEach((location)=> {
+      usersCard.innerHTML += `
+      <section class="card-grid" id="cardGrid">
+      <section class="card" id="usersCard">
+      <h4 card-title>${location.destination}</h4>
+      <img class="card-holder-img" src="" alt="" alt="">
+      <div class=card-text>
+      <p class="card-travelers"><b>Travelers: ${trip.travelers}</b></p>
+      <p class="card-start-date"><b>Start Date: ${trip.date}</b></p>
+      <p class="card-duration"><b>Duration: ${trip.duration}</b></p>
+      <p class="card-status"><b>Status: ${trip.status}</b></p>
+      `;
+    })
+  }
+
+  const renderPendingTrips = (currentTraveler) => {
+let trips = allTrips.returnPendingTrips(currentTraveler.id);
+if (trips.length === 0) {
+  errorHandlingContainer.innerHTML += `
+       <p Sorry ${currentTraveler.name}! You don't have any pending trips scheduled></p>
+       `;
+} else {
   usersCard.innerHTML = " ";
   trips.forEach((trip) => {
     usersCard.innerHTML += `
-    <section class="card-grid" id="cardGrid">
-    <section class="card" id="usersCard">
-    <h4 card-title></h4>
-    <img class="card-holder-img" src="" alt="" alt="">
-    <div class=card-text>
-    <p class="card-travelers"><b>Travelers: ${trip.travelers}</b></p>
-    <p class="card-start-date"><b>Start Date: ${trip.date}</b></p>
-    <p class="card-duration"><b>Duration: ${trip.duration}</b></p>
-    <p class="card-status"><b>Status: ${trip.status}</b></p>
-    `;
+       <section class="card-grid" id="cardGrid">
+       <section class="card" id="usersCard">
+       <h4 card-title></h4>
+       <img class="card-holder-img" src="" alt="" alt="">
+       <div class=card-text>
+       <p class="card-travelers"><b>Travelers: ${trip.travelers}</b></p>
+       <p class="card-start-date"><b>Start Date: ${trip.date}</b></p>
+       <p class="card-duration"><b>Duration: ${trip.duration}days</b> </p>
+       <p class="card-status"><b>Status: ${trip.status}</b></p>
+       `;
   });
+}
 };
