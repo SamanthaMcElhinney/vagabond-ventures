@@ -2,6 +2,8 @@ import chai from "chai";
 const expect = chai.expect;
 import destinationTestData from "./destinationTestData";
 import DestinationRepository from "../src/classes/Destination-Repo";
+import TripRepo from "../src/classes/TripRepo";
+import tripData from "./Trip-test-data";
 
 
 describe("DestinationRepository", () => {
