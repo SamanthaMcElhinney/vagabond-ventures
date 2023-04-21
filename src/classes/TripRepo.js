@@ -1,4 +1,5 @@
 const dayjs = require("dayjs");
+import DestinationRepository from "./Destination-Repo";
 
 class TripRepo {
   constructor(tripInfo) {
@@ -12,20 +13,33 @@ class TripRepo {
   returnPastTrips(id, date) {
     return this.findAllTripsByTraveler(id).filter(
       (trip) =>
-        dayjs(trip.date).format("YYYY/MM/DD") <=
-        dayjs(date).format("YYYY/MM/DD")
+        trip.status === 'approved' && (dayjs(trip.date).format("YYYY/MM/DD") <=
+        dayjs(date).format("YYYY/MM/DD"))
     );
   }
 
+  // matchTripsToDestinations(destinationData){
+  //   let destinations = destinationData.filter(destination => destination.data.id === destination.id)
+  //   console.log(destinations, "destinations")
+  // }
+
+  // returnPastTripsDestinations(id, date, destinations) {
+  //  let trips = this.returnPastTrips(id,date)
+  //  console.log(trips, "trips")
+  //  let allDestinationsData = trips.filter(
+  //    (trip) => trip.destinationID === destinations.id
+  //  );
+  //  console.log(allDestinationsData, "dest");
+  //  return allDestinationsData;
+  // }
+
   returnFutureTrips(id, date) {
-    const results = this.findAllTripsByTraveler(id).filter(
+    return this.findAllTripsByTraveler(id).filter(
       (trip) =>
+      trip.status === 'approved' &&
         dayjs(trip.date).format("YYYY/MM/DD") >=
         dayjs(date).format("YYYY/MM/DD")
     );
-    if (results.length === 0) {
-      return "Sorry Friend! You don't have any upcoming trips";
-    }
   }
 
   returnPendingTrips(id) {
@@ -47,7 +61,6 @@ class TripRepo {
         trip.travelers,
         trip.duration
       )
-      console.log(acc)
       return acc
     },0)
     return total
