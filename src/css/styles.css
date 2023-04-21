@@ -39,10 +39,16 @@ main {
 }
 
 .header{
-      display: flex;
-    flex-direction: row-reverse;
-    align-content: space-between;
-    justify-content: center;
+  display: flex;
+  flex-direction: row-reverse;
+  align-content: space-between;
+  justify-content: center;
+}
+
+.header-title{
+  size: 100px;
+  color:#FF6A2C;
+  font-weight: bold;
 }
 
 header {
@@ -117,8 +123,18 @@ header {
   background-color: #80B0A4;
   transition: 0.7s;
 }
+
+.nav-greeting {
+  font-weight: bolder;
+  color: black;
+}
 -------------------------------Main Card Section------------------------------- .all-trips {
   display: flex;
+}
+
+.error-handling-main {
+   background-color: #D9D9D9;
+   color: #FF6A2C;
 }
 
 .main-title {
@@ -153,7 +169,7 @@ header {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 4%;
-  grid-row-gap: 7%;
+  grid-row-gap: 4%;
 }
 
 .card {
