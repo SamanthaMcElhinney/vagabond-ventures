@@ -189,10 +189,18 @@ describe("Trip", () => {
           },
         ]);
     })
-    it("should be able to return upcoming trips", () => {
-         expect(trip.returnFutureTrips(7, "2023/05/22")).to.equal("Sorry Friend! You don't have any upcoming trips")
+    it("should return an empty array if there are no upcoming trips", () => {
+         expect(trip.returnFutureTrips(7, "2023/05/22")).to.deep.equal([])
+    })
+    it("should be able to return all matching destination to trips", () => {
+        expect(trip.matchTripsToDestinations(destinationRepository)).to.deep.equal()
     })
     it("shoulde be able to filter pending trips", () => {
         expect(trip.returnPendingTrips(7)).to.have.a.lengthOf(0)
+    })
+    it("should be able to calculate total spent by traveler", () => {
+        expect(
+          trip.calculateTotalSpentByTraveler(3, destinationRepository)
+        ).to.equal(4543);
     })
 });
