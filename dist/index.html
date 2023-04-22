@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,16 +10,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
     <title>Vagabond Ventures</title>
   </head>
+
   <body>
     <header>
       <div class="header">
-            <h1 class="header-title">Just Take The Trip!</h1>
+        <h1 class="header-title">Just Take The Trip!</h1>
         <!-- <div class="header-stripes">
           <img class="stripes" src="./images/rainbow.jpg">
         </div> -->
         <div class="header-container">
           <div class="logo">
-            <img class="logo-image"src="./images/logo-main.png" alt="logo for Vagabond Ventures with rainbow sky and plane">
+            <img class="logo-image" src="./images/logo-main.png"
+              alt="logo for Vagabond Ventures with rainbow sky and plane">
           </div>
         </div>
       </div>
@@ -41,6 +44,7 @@
           </select>
           <div class="estimated-button-container">
             <button class="estimated-button" id="estimateButton">Get a quote</button>
+            <button class="submit-button" id="submitButton">Submit Trip</button>
           </div>
         </form>
         <div class="navigation-user-card">
@@ -52,11 +56,11 @@
       <main class="all-trips">
         <!-- <h2 class="main-title">Your Trips</h2> -->
         <section class="main-container-buttons">
-          <button class="main-button" id="pastTripsButton"type="button" name="button">Past trips</button>
+          <button class="main-button" id="pastTripsButton" type="button" name="button">Past trips</button>
           <button class="main-button" id="upcomingTripsButton" type="button" name="button">Upcoming Trips</button>
           <button class="main-button" id="pendingTripsButton" type="button" name="button">Pending Trips</button>
         </section>
-        <section class="error-handling-main" id="errorHandlingMain">
+        <section class="error-handling-main hidden" id="errorHandlingMain">
         </section>
         <section class="card-grid" id="cardGrid">
           <section class="card" id="usersCard">
@@ -77,4 +81,5 @@
     <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
     <script src="bundle.js"></script>
   </body>
+
 </html>
