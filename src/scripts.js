@@ -28,9 +28,10 @@ const pendingTripsButton = document.querySelector("#pendingTripsButton");
 const errorHandlingContainer = document.querySelector("#errorHandlingMain");
 const getAQuoteButton = document.querySelector("#estimateButton");
 const formStartDate = document.querySelector("#calendarStart");
-const formEndDate = document.querySelector("#calendarEndLabel");
-const formNumberTravelers = document.querySelector("#traverlersIntakeLabel");
-const dropdown = document.querySelector("#destinations");
+const formDuration = document.querySelector("#duration-input");
+const formNumberTravelers = document.querySelector("#travelersInput");
+const formDropdown = document.querySelector("#destinations");
+const estimateQuoteSection = document.querySelector("#estimatedQuote")
 
 
 //Global variables
@@ -76,17 +77,35 @@ Promise.all([fetchTravelers(), fetchAllTrips(), fetchAllDestinations()]).then(
     renderPendingTrips(currentTraveler)
   })
 
+getAQuoteButton.addEventListener("click", (event) => {
+  displayTripCost(event)
+})
+
 const createDropdown = () => {
 allDestinations.data
   .sort((a, b) => {
     return a.destination - b.destination;
   })
   .forEach((destination) => {
-    dropdown.innerHTML += `
+    formDropdown.innerHTML += `
     <option value="${destination.destination}">${destination.destination}</option>
     `;
   });
 };
+
+const displayTripCost = (event) => {
+  event.preventDefault();
+  const destination = allDestinations.findDestinationByName(formDropdown.value);
+  console.log(destination, "destination")
+  const total =
+    destination.estimatedLodgingCostPerDay * formDuration.value +
+    destination.estimatedFlightCostPerPerson * formNumberTravelers.value * 1.1;
+    const roundedTotal = Number(total).toFixed(2)
+    console.log(formDuration.value, "duration");
+    console.log(formNumberTravelers.value, "number travelers");
+    estimateQuoteSection.classList.remove("hidden")
+    estimateQuoteSection.innerText = `$${roundedTotal} for this new trip`
+}
 
 const displayUser = (
   currentTraveler,
