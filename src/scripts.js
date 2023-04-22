@@ -26,6 +26,12 @@ const userWelcomeCard = document.querySelector(".navigation-user-card");
 const upcomingTripsButtons = document.querySelector("#upcomingTripsButton");
 const pendingTripsButton = document.querySelector("#pendingTripsButton");
 const errorHandlingContainer = document.querySelector("#errorHandlingMain");
+const getAQuoteButton = document.querySelector("#estimateButton");
+const formStartDate = document.querySelector("#calendarStart");
+const formEndDate = document.querySelector("#calendarEndLabel");
+const formNumberTravelers = document.querySelector("#traverlersIntakeLabel");
+const formDestinations = document.querySelector("#destinations");
+
 
 //Global variables
 let allTrips;
@@ -35,19 +41,6 @@ let currentTraveler;
 
 let date = dayjs().format("YYYY/MM/DD");
 console.log(date, "date");
-
-//event listeners
-pastTripsButton.addEventListener("click", () => {
-  renderPastTrips(allTrips, currentTraveler, date);
-});
-
-upcomingTripsButtons.addEventListener("click", () => {
-renderUpcomingTrips(allTrips, currentTraveler, date); 
-})
-
-pendingTripsButton.addEventListener("click", () => {
-renderPendingTrips(currentTraveler)
-})
 
 // import API Calls
 import {
@@ -60,11 +53,28 @@ Promise.all([fetchTravelers(), fetchAllTrips(), fetchAllDestinations()]).then(
   ([travelerData, tripData, destinationData]) => {
     allTravelers = new TravelerRepository(travelerData)
     allDestinations = new DestinationRepository(destinationData)
+    console.log(allDestinations, "AD")
     allTrips = new TripRepo(tripData)
-    currentTraveler = new Traveler(allTravelers.getSingleTravelerById(2));
+    currentTraveler = new Traveler(allTravelers.getSingleTravelerById(7));
     displayUser(currentTraveler, allDestinations, allTrips);
   }
-);
+  ).catch(error => {
+    console.log('Error fetching Data:', error.message)
+  })
+  
+  //event listeners
+  pastTripsButton.addEventListener("click", () => {
+    renderPastTrips(allTrips, currentTraveler, date);
+  });
+  
+  upcomingTripsButtons.addEventListener("click", () => {
+    renderUpcomingTrips(allTrips, currentTraveler, date);
+  })
+  
+  pendingTripsButton.addEventListener("click", () => {
+    renderPendingTrips(currentTraveler)
+  })
+
 
 const displayUser = (
   currentTraveler,
@@ -82,17 +92,15 @@ const displayUser = (
       </div>`;
 };
 
-
 const renderUpcomingTrips = (allTrips, currentTraveler, date) => {
-    let trips = allTrips.returnFutureTrips(currentTraveler.id, date)
-    if (trips.length === 0) {
-      errorHandlingContainer.innerHTML += `
-       <p Sorry ${currentTraveler.name}! You don't have any upcomding trips scheduled></p>
+  let trips = allTrips.returnFutureTrips(currentTraveler.id, date)
+  if (trips.length === 0) {
+    usersCard.innerText = `
+       Sorry ${currentTraveler.name}! You don't have any upcoming trips scheduled
        `;
-    } else {
-      usersCard.innerHTML = " ";
-      trips.forEach((trip) => {
-        usersCard.innerHTML += `
+  } else {
+    trips.forEach((trip) => {
+      usersCard.innerHTML += `
        <section class="card-grid" id="cardGrid">
        <section class="card" id="usersCard">
        <h4 card-title></h4>
@@ -103,51 +111,51 @@ const renderUpcomingTrips = (allTrips, currentTraveler, date) => {
        <p class="card-duration"><b>Duration: ${trip.duration}days</b> </p>
        <p class="card-status"><b>Status: ${trip.status}</b></p>
        `;
-      });
-    }
+    });
+  }
 }
 
 const renderPastTrips = (allTrips, currentTraveler, date, allDestinations) => {
-  let trips = allTrips.returnPastTrips(currentTraveler.id, date)
-//   let destinations = allDestinations.getSingleDestinationById(
-// )
+  console.log(allDestinations, "all destinations")
+  let trips = allTrips.returnPastTrips(currentTraveler.id, date); 
   usersCard.innerHTML = " ";
   trips.forEach((trip) => {
-    // destinations.forEach((location)=> {
-      usersCard.innerHTML += `
-      <section class="card-grid" id="cardGrid">
-      <section class="card" id="usersCard">
-      <h4 card-title>${location.destination}</h4>
-      <img class="card-holder-img" src="" alt="" alt="">
-      <div class=card-text>
+    console.log(trip.id, "trip")
+    usersCard.innerHTML += `
+    <section class="card" id="usersCard">
+
       <p class="card-travelers"><b>Travelers: ${trip.travelers}</b></p>
       <p class="card-start-date"><b>Start Date: ${trip.date}</b></p>
       <p class="card-duration"><b>Duration: ${trip.duration}</b></p>
       <p class="card-status"><b>Status: ${trip.status}</b></p>
       `;
+  })
+}
+
+const renderPendingTrips = (currentTraveler) => {
+  let trips = allTrips.returnPendingTrips(currentTraveler.id);
+  // console.log(trips, "pending")
+  if (!allTrips.returnPendingTrips(currentTraveler.id).length) {
+    usersCard.innerText = `
+    Sorry ${currentTraveler.name}! You don't have any pending trips scheduled
+       `;
+  } else {
+    usersCard.innerHTML = " ";
+    trips.forEach((trip) => {
+      usersCard.innerHTML += `
+       <section class="card" id="usersCard">
+       <p class="card-travelers"><b>Travelers: ${trip.travelers}</b></p>
+       <p class="card-start-date"><b>Start Date: ${trip.date}</b></p>
+       <p class="card-duration"><b>Duration: ${trip.duration} days</b> </p>
+       <p class="card-status"><b>Status: ${trip.status}</b></p>
+       `;
+    });
+  }
+
+  function preventDuplicates(data, userID, date) {
+    return data.find((trip)=> {
+      return trip.date === date && trip.userID === userID
     })
   }
 
-  const renderPendingTrips = (currentTraveler) => {
-let trips = allTrips.returnPendingTrips(currentTraveler.id);
-if (trips.length === 0) {
-  errorHandlingContainer.innerHTML += `
-       <p Sorry ${currentTraveler.name}! You don't have any pending trips scheduled></p>
-       `;
-} else {
-  usersCard.innerHTML = " ";
-  trips.forEach((trip) => {
-    usersCard.innerHTML += `
-       <section class="card-grid" id="cardGrid">
-       <section class="card" id="usersCard">
-       <h4 card-title></h4>
-       <img class="card-holder-img" src="" alt="" alt="">
-       <div class=card-text>
-       <p class="card-travelers"><b>Travelers: ${trip.travelers}</b></p>
-       <p class="card-start-date"><b>Start Date: ${trip.date}</b></p>
-       <p class="card-duration"><b>Duration: ${trip.duration}days</b> </p>
-       <p class="card-status"><b>Status: ${trip.status}</b></p>
-       `;
-  });
-}
 };
