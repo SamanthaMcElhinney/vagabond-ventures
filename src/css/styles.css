@@ -73,6 +73,10 @@ header {
 
 -------------------------------NAVIGATION ELEMENTS------------------------------- 
 
+
+.estimated-quote-section {
+  background-color: white;
+}
 .nav-section {
   display: flex;
   flex-direction: column;
@@ -115,7 +119,11 @@ header {
   flex-direction: column;
   padding: 10px;
   margin-top: 50px;
+}
 
+.estimated-button:hover, .submit-button:hover, .navigation-user-card:hover  {
+ background-color: #80B0A4;
+  transition: 0.7s;
 }
 
 .navigation-user-card{
