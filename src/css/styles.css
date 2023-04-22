@@ -71,7 +71,9 @@ header {
   justify-content: flex-end;
 }
 
--------------------------------NAVIGATION ELEMENTS------------------------------- .nav-section {
+-------------------------------NAVIGATION ELEMENTS------------------------------- 
+
+.nav-section {
   display: flex;
   flex-direction: column;
   padding: 10px;
@@ -103,6 +105,7 @@ header {
 .estimated-button-container {
   display: flex;
   padding-top: 10px;
+  justify-content: space-around;
 }
 
 .navigation-user-card {
@@ -169,7 +172,7 @@ header {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   grid-column-gap: 4%;
-  grid-row-gap: 4%;
+  grid-row-gap: 7%;
 }
 
 .card {
