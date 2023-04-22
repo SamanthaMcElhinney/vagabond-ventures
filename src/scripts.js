@@ -33,7 +33,6 @@ const formNumberTravelers = document.querySelector("#travelersInput");
 const formDropdown = document.querySelector("#destinations");
 const estimateQuoteSection = document.querySelector("#estimatedQuote")
 
-
 //Global variables
 let allTrips;
 let allTravelers;
@@ -107,6 +106,28 @@ const displayTripCost = (event) => {
     estimateQuoteSection.innerText = `$${roundedTotal} for this new trip`
 }
 
+// const createPost = (event) => {
+//   event.preventDefault()
+//   if(formDropdown.value, formDuration.value, formNumberTravelers.value) {
+//     const destinationId = allDestinations.find(destination => destination.destination === formDropdown.value);
+//     const tripObject = {
+//       id: allTrips.length + 1,
+//       userID: currentTraveler.id,
+//       destinationID: Number(destinationId.id),
+//       travelers: Number(formNumberTravelers.value),
+//       date: dayjs(formStartDate.value).format("YYYY/MM/DD"),
+//       duration: formDuration.value,
+//       status: "pending",
+//       suggestedActivities:[],
+//     }
+//     postTrip(tripObject)
+//   }
+// }
+
+// const postTrip = (data) {
+//   return fetch()
+// }
+
 const displayUser = (
   currentTraveler,
   allDestinations,
@@ -132,11 +153,13 @@ const renderUpcomingTrips = (allTrips, currentTraveler, date) => {
   } else {
     trips.forEach((trip) => {
       usersCard.innerHTML += `
-       <section class="card-grid" id="cardGrid">
-       <section class="card" id="usersCard">
-       <h4 card-title></h4>
-       <img class="card-holder-img" src="" alt="" alt="">
-       <div class=card-text>
+  <section class="card" id="usersCard">
+     <p class="card-title">${
+       allDestinations.getSingleDestinationById(trip.destinationID).destination
+     }</p>
+            <img class="card-holder-img" src="${
+              allDestinations.getSingleDestinationById(trip.destinationID).image
+            }" alt="" alt="">
        <p class="card-travelers"><b>Travelers: ${trip.travelers}</b></p>
        <p class="card-start-date"><b>Start Date: ${trip.date}</b></p>
        <p class="card-duration"><b>Duration: ${trip.duration}days</b> </p>
@@ -146,13 +169,21 @@ const renderUpcomingTrips = (allTrips, currentTraveler, date) => {
   }
 }
 
-const renderPastTrips = (allTrips, currentTraveler, date, allDestinations) => {
+// destinations.getDestinationById(tripBooking.destinationID).imag;
+const renderPastTrips = (allTrips, currentTraveler, date) => {
   let trips = allTrips.returnPastTrips(currentTraveler.id, date); 
   usersCard.innerHTML = " ";
   trips.forEach((trip) => {
     console.log(trip.id, "trip")
     usersCard.innerHTML += `
     <section class="card" id="usersCard">
+     <p class="card-title">${
+       allDestinations.getSingleDestinationById(trip.destinationID).destination
+     }</p>
+            <img class="card-holder-img" src="${
+              allDestinations.getSingleDestinationById(trip.destinationID)
+                .image
+            }" alt="" alt="">
       <p class="card-travelers"><b>Travelers: ${trip.travelers}</b></p>
       <p class="card-start-date"><b>Start Date: ${trip.date}</b></p>
       <p class="card-duration"><b>Duration: ${trip.duration}</b></p>
@@ -172,7 +203,13 @@ const renderPendingTrips = (currentTraveler) => {
     usersCard.innerHTML = " ";
     trips.forEach((trip) => {
       usersCard.innerHTML += `
-       <section class="card" id="usersCard">
+        <section class="card" id="usersCard">
+     <p class="card-title">${
+       allDestinations.getSingleDestinationById(trip.destinationID).destination
+     }</p>
+            <img class="card-holder-img" src="${
+              allDestinations.getSingleDestinationById(trip.destinationID).image
+            }" alt="" alt="">
        <p class="card-travelers"><b>Travelers: ${trip.travelers}</b></p>
        <p class="card-start-date"><b>Start Date: ${trip.date}</b></p>
        <p class="card-duration"><b>Duration: ${trip.duration} days</b> </p>
