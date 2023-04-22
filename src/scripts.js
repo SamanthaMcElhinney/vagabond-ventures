@@ -30,7 +30,7 @@ const getAQuoteButton = document.querySelector("#estimateButton");
 const formStartDate = document.querySelector("#calendarStart");
 const formEndDate = document.querySelector("#calendarEndLabel");
 const formNumberTravelers = document.querySelector("#traverlersIntakeLabel");
-const formDestinations = document.querySelector("#destinations");
+const dropdown = document.querySelector("#destinations");
 
 
 //Global variables
@@ -57,6 +57,7 @@ Promise.all([fetchTravelers(), fetchAllTrips(), fetchAllDestinations()]).then(
     allTrips = new TripRepo(tripData)
     currentTraveler = new Traveler(allTravelers.getSingleTravelerById(7));
     displayUser(currentTraveler, allDestinations, allTrips);
+    createDropdown(allDestinations);
   }
   ).catch(error => {
     console.log('Error fetching Data:', error.message)
@@ -75,6 +76,17 @@ Promise.all([fetchTravelers(), fetchAllTrips(), fetchAllDestinations()]).then(
     renderPendingTrips(currentTraveler)
   })
 
+const createDropdown = () => {
+allDestinations.data
+  .sort((a, b) => {
+    return a.destination - b.destination;
+  })
+  .forEach((destination) => {
+    dropdown.innerHTML += `
+    <option value="${destination.destination}">${destination.destination}</option>
+    `;
+  });
+};
 
 const displayUser = (
   currentTraveler,
@@ -116,14 +128,12 @@ const renderUpcomingTrips = (allTrips, currentTraveler, date) => {
 }
 
 const renderPastTrips = (allTrips, currentTraveler, date, allDestinations) => {
-  console.log(allDestinations, "all destinations")
   let trips = allTrips.returnPastTrips(currentTraveler.id, date); 
   usersCard.innerHTML = " ";
   trips.forEach((trip) => {
     console.log(trip.id, "trip")
     usersCard.innerHTML += `
     <section class="card" id="usersCard">
-
       <p class="card-travelers"><b>Travelers: ${trip.travelers}</b></p>
       <p class="card-start-date"><b>Start Date: ${trip.date}</b></p>
       <p class="card-duration"><b>Duration: ${trip.duration}</b></p>
@@ -134,7 +144,7 @@ const renderPastTrips = (allTrips, currentTraveler, date, allDestinations) => {
 
 const renderPendingTrips = (currentTraveler) => {
   let trips = allTrips.returnPendingTrips(currentTraveler.id);
-  // console.log(trips, "pending")
+
   if (!allTrips.returnPendingTrips(currentTraveler.id).length) {
     usersCard.innerText = `
     Sorry ${currentTraveler.name}! You don't have any pending trips scheduled
@@ -151,11 +161,4 @@ const renderPendingTrips = (currentTraveler) => {
        `;
     });
   }
-
-  function preventDuplicates(data, userID, date) {
-    return data.find((trip)=> {
-      return trip.date === date && trip.userID === userID
-    })
-  }
-
 };
