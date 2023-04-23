@@ -93,7 +93,7 @@
           <section class="container-login-section" id="container-login">
             <h1 class="login-title">Vegabond Ventures ✈︎</h1>
             <p class="login-greeting">Take the next step! </p>
-            <form>
+            <form class="login-form" id="loginForm">
               <div class="login-container">
                 <div class="login-username-container">
                   <label for="uname">Username</label>
@@ -104,8 +104,8 @@
                   <input type="password" placeholder="Enter Password" id="password" name="psw" required>
                 </div>
                 </section>
-                <h2 class="username-error hidden" id="login-error" aria-errormessage="login-error-message" aria-invalid="false">
-                  Incorrect username & password combination</h2>
+                <h2 class="login-error hidden" id="loginError">
+               Incorrect username & password combination   </h2>
                 <button class="login-button" id="login-button"type="submit">Login</button>
               </div>
             </form>
