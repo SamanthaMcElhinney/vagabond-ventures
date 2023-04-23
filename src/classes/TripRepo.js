@@ -13,47 +13,34 @@ class TripRepo {
   returnPastTrips(id, date) {
     return this.findAllTripsByTraveler(id).filter(
       (trip) =>
-        trip.status === 'approved' && (dayjs(trip.date).format("YYYY/MM/DD") <=
+      trip.status === 'approved' && (dayjs(trip.date).format("YYYY/MM/DD") <=
         dayjs(date).format("YYYY/MM/DD"))
     );
   }
 
-  // matchTripsToDestinations(destinationData){
-  //   let destinations = destinationData.filter(destination => destination.data.id === destination.id)
-  //   console.log(destinations, "destinations")
-  // }
-
-  // returnPastTripsDestinations(id, date, destinations) {
-  //  let trips = this.returnPastTrips(id,date)
-  //  console.log(trips, "trips")
-  //  let allDestinationsData = trips.filter(
-  //    (trip) => trip.destinationID === destinations.id
-  //  );
-  //  console.log(allDestinationsData, "dest");
-  //  return allDestinationsData;
-  // }
-
   returnFutureTrips(id, date) {
-    return this.findAllTripsByTraveler(id).filter(
+    const result = this.findAllTripsByTraveler(id).filter(
       (trip) =>
       trip.status === 'approved' &&
-        dayjs(trip.date).format("YYYY/MM/DD") >=
-        dayjs(date).format("YYYY/MM/DD")
+      dayjs(trip.date).format("YYYY/MM/DD") >=
+      dayjs(date).format("YYYY/MM/DD")
     );
+    return result 
   }
 
   returnPendingTrips(id) {
     const result = this.findAllTripsByTraveler(id).filter(
       (trip) => trip.status === "pending"
-    );
-    console.log(result);
+    )
     return result;
   }
+
   getTripsByStatus(id, status) {
     let travelerTrips = this.getTripsByUserId(id);
     return travelerTrips.filter((trip) => trip.status === status);
   }
-  calculateTotalSpentByTraveler(id, destinations){
+
+  calculateTotalSpentByTraveler(id, destinations) {
     let trips = this.findAllTripsByTraveler(id)
     let total = trips.reduce((acc, trip) => {
       acc += destinations.calculateTotalTripCost(
@@ -62,8 +49,23 @@ class TripRepo {
         trip.duration
       )
       return acc
-    },0)
+    }, 0)
     return total
   }
-}
+  }
+
+// fi(id, destinationsData){
+//   let tripsById = this.findAllTripsByTraveler(3);
+//  let destinationArray = destinationsData.data.forEach(destination => {
+//     tripsById.reduce((acc, currentTrip) => {
+//       console.log(currentTrip, "CT")
+//         // if(destination.id === currentTrip.destinationID) {
+//         //   console.log(currentTrip, "CT")
+//         //   acc.push(destination)
+//         return acc
+//       })
+//     },[])
+//     return destinationArray
+//   } 
+
 export default TripRepo;

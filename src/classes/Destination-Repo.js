@@ -3,6 +3,14 @@ class DestinationRepository {
     this.data = destinationData;
   }
 
+  findMatchingTripToDestination(id) {
+    const tripData = this.data.filter(
+      (destination) => id === destination.id
+    );
+    console.log(tripData);
+    return tripData;
+  }
+
   getSingleDestinationById(id) {
     return this.data.find((destination) => destination.id === id);
   }
@@ -21,8 +29,8 @@ class DestinationRepository {
   calculateTotalTripCost(id, travelers, duration) {
     let destination = this.getSingleDestinationById(id);
     let totalCost =
-      (destination.estimatedLodgingCostPerDay * duration) +
-      (destination.estimatedFlightCostPerPerson * travelers)
+      destination.estimatedLodgingCostPerDay * duration +
+      destination.estimatedFlightCostPerPerson * travelers;
     return Number((totalCost * 1.1).toFixed(2));
   }
 }
