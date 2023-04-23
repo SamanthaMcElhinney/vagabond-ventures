@@ -14,10 +14,7 @@
   <body>
     <header>
       <div class="header">
-        <h1 class="header-title">Just Take The Trip!</h1>
-        <!-- <div class="header-stripes">
-          <img class="stripes" src="./images/rainbow.jpg">
-        </div> -->
+        <h2 class="header-title">Just Take The Trip!</h2>
         <div class="header-container">
           <div class="logo">
             <img class="logo-image" src="./images/logo-main.png"
@@ -86,35 +83,33 @@
       </main>
     </section>
         <section class="login-page" id="loginPage">
-          <div class="login-container">
-          <!-- <section class="image-login-page">
-            <img class="image-login" src= "./images/login-logo.png" alt="plane with sunset view looking inside a window">
-          </section> -->
-          <section class="container-login-section" id="container-login">
-            <h1 class="login-title">Vegabond Ventures ✈︎</h1>
-            <p class="login-greeting">Take the next step! </p>
-            <form class="login-form" id="loginForm">
-              <div class="login-container">
-                <div class="login-username-container">
-                  <label for="uname">Username</label>
-                  <input type="text" id="username" placeholder="Enter Username" name="uname" required>
-                </div>
-                <div class="login-password">
-                  <label for="psw"><b>Password</b></label>
-                  <input type="password" placeholder="Enter Password" id="password" name="psw" required>
-                </div>
+            <section class="login-page-stripes">
+              <img class="image-stripes" src="./images/rainbow.jpg">
+            </section>
+            <section class="container-login-section" id="container-login">
+              <h1 class="login-title">Vegabond Ventures ✈︎</h1>
+              <form class="login-form" id="loginForm">
+                <div class="login-container">
+                  <div class="login-username-container">
+                    <label for="uname">Username</label>
+                    <input type="text" id="username" placeholder="Enter Username" name="uname" required>
+                  </div>
+                  <div class="login-password">
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" id="password" name="psw" required>
+                  </div>
+                  <button class="login-button" id="login-button"type="submit">Login</button>
                 </section>
-                <h2 class="login-error hidden" id="loginError">
-               Incorrect username & password combination   </h2>
-                <button class="login-button" id="login-button"type="submit">Login</button>
-              </div>
-            </form>
+                <h3 class="login-error hidden" id="loginError">
+                  Incorrect username & password combination   </h3>
+                </div>
+              </form>
             </div>
           </section>
         </section>
-    <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
-    <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
-    <script src="bundle.js"></script>
-  </body>
-
-</html>
+        <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
+        <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
+        <script src="bundle.js"></script>
+      </body>
+      
+      </html>
