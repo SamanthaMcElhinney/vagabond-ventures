@@ -11,6 +11,7 @@ import TripRepo from "./classes/TripRepo";
 import "./images/logo-main.png";
 import "./images/rainbow.jpg";
 import "./images/login-logo.png";
+import "./images/time-to-travel.png";
 
 //Third Party Library Imports
 const dayjs = require("dayjs");
@@ -71,6 +72,7 @@ loginButton.addEventListener("click", (event) => {
   loginUser(event);
   displayUser(currentTraveler, allDestinations, allTrips);
   createDropdown(allDestinations);
+  loginSection.classList.add("hidden")
   // getAQuoteButton.disabled = true
 });
 
@@ -173,7 +175,7 @@ const createTrip = (object) => {
       console.log(error)
       errorMessagePost.innerText =
         "This is so embarressing, but there is an error with our server. We are working on it!";
-      // clearSearchInputs();
+      clearSearchInputs();
     })
 }
 
@@ -197,7 +199,7 @@ submitTripButton.addEventListener("click", function (event) {
   setTimeout(() => {
     calculateTotalSpent(currentTraveler, allDestinations, allTrips);
   }, 3000);
-  // clearSearchInputs()
+  clearSearchInputs()
 })
 
 const postPendingTrip = () => {
