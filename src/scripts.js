@@ -31,8 +31,10 @@ const errorMessagePost = document.querySelector("#errorMessagePost");
 const submitTripButton = document.querySelector("#submitButton");
 const username = document.getElementById("username");
 const password = document.getElementById("password");
+const loginErrorSection = document.getElementById("loginError")
 const loginButton = document.getElementById("login-button");
 const loginSection = document.querySelector("#loginPage");
+const loginForm = document.getElementById("loginForm");
 const mainSection = document.querySelector("#mainSection");
 
 //Global variables
@@ -67,7 +69,7 @@ const loadPage = () => {
 
 loginButton.addEventListener("click", (event) => {
   loginUser(event);
-  displayUser(currentTraveler, allDestinations, allTrips); 
+  displayUser(currentTraveler, allDestinations, allTrips);
   createDropdown(allDestinations);
   // getAQuoteButton.disabled = true
 });
@@ -98,13 +100,25 @@ const loginUser = (event) => {
     string === "traveler" &&
     Number(id) <= 50 &&
     Number(id) > 0 &&
-    password.value === "travel"
-  ) {
-    currentTraveler = new Traveler(allTravelers.getSingleTravelerById(Number(id)));
-    loginSection.classList.add("hidden");
-    mainSection.classList.remove("hidden");
-  } else {
-    console.log("whoopse");
+    password.value === "travel") 
+    {
+      currentTraveler = new Traveler(allTravelers.getSingleTravelerById(Number(id)));
+      loginSection.classList.add("hidden");
+      mainSection.classList.remove("hidden");
+      loginForm.reset();
+  } else if (string !== "traveler" && password.value === "travel") 
+  {
+    loginErrorSection.classList.remove("hidden")
+    loginErrorSection.innerText = `Sorry! You have an invalid username. Don't give up. Please try again!`;
+    loginForm.reset();
+  } else if(string === "traveler" && password.value !== "travel") {
+    loginErrorSection.classList.remove("hidden");
+    loginErrorSection.innerText = `Sorry! You have an incorrect password. Don't give up. Please try again!`;
+    loginForm.reset();
+  } else if (string === "traveler" || password.value !== "travel") {
+     loginErrorSection.classList.remove("hidden");
+     loginErrorSection.innerText = `Sorry! You have an incorrect username and password combination. Don't give up. Please try again!`;
+     loginForm.reset();
   }
 }
 
