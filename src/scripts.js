@@ -10,6 +10,8 @@ import TripRepo from "./classes/TripRepo";
 //Images Import
 import "./images/logo-main.png";
 import "./images/rainbow.jpg";
+import "./images/login-logo.png";
+import "./images/time-to-travel.png";
 
 //Third Party Library Imports
 const dayjs = require("dayjs");
@@ -28,6 +30,13 @@ const formDropdown = document.querySelector("#destinations");
 const estimateQuoteSection = document.querySelector("#estimatedQuote");
 const errorMessagePost = document.querySelector("#errorMessagePost");
 const submitTripButton = document.querySelector("#submitButton");
+const username = document.getElementById("username");
+const password = document.getElementById("password");
+const loginErrorSection = document.getElementById("loginError")
+const loginButton = document.getElementById("login-button");
+const loginSection = document.querySelector("#loginPage");
+const loginForm = document.getElementById("loginForm");
+const mainSection = document.querySelector("#mainSection");
 
 //Global variables
 let allTrips;
@@ -43,19 +52,29 @@ import {
   fetchAllDestinations,
 } from "./ApiCalls";
 
-Promise.all([fetchTravelers(), fetchAllTrips(), fetchAllDestinations()]).then(
-  ([travelerData, tripData, destinationData]) => {
-    allTravelers = new TravelerRepository(travelerData)
-    allDestinations = new DestinationRepository(destinationData)
-    console.log(allDestinations, "AD")
-    allTrips = new TripRepo(tripData)
-    currentTraveler = new Traveler(allTravelers.getSingleTravelerById(7));
-    displayUser(currentTraveler, allDestinations, allTrips);
-    createDropdown(allDestinations);
-  }
-).catch(error => {
-  console.log('Error fetching Data:', error.message)
+window.addEventListener("load", () => {
+  loadPage()
 })
+
+const loadPage = () => {
+  Promise.all([fetchTravelers(), fetchAllTrips(), fetchAllDestinations()]).then(
+    ([travelerData, tripData, destinationData]) => {
+      allTravelers = new TravelerRepository(travelerData)
+      allDestinations = new DestinationRepository(destinationData)
+      allTrips = new TripRepo(tripData)
+    }
+  ).catch(error => {
+    console.log('Error fetching Data:', error.message)
+  })
+}
+
+loginButton.addEventListener("click", (event) => {
+  loginUser(event);
+  displayUser(currentTraveler, allDestinations, allTrips);
+  createDropdown(allDestinations);
+  loginSection.classList.add("hidden")
+  // getAQuoteButton.disabled = true
+});
 
 //Event Listeners
 pastTripsButton.addEventListener("click", () => {
@@ -73,6 +92,37 @@ pendingTripsButton.addEventListener("click", () => {
 getAQuoteButton.addEventListener("click", (event) => {
   displayTripCost(event)
 })
+
+//Functions
+const loginUser = (event) => {
+  event.preventDefault(event);
+  const id = +username.value.match(/\d+/g);
+  const string = username.value.slice(0, 8);
+  if (
+    string === "traveler" &&
+    Number(id) <= 50 &&
+    Number(id) > 0 &&
+    password.value === "travel") 
+    {
+      currentTraveler = new Traveler(allTravelers.getSingleTravelerById(Number(id)));
+      loginSection.classList.add("hidden");
+      mainSection.classList.remove("hidden");
+      loginForm.reset();
+  } else if (string !== "traveler" && password.value === "travel") 
+  {
+    loginErrorSection.classList.remove("hidden")
+    loginErrorSection.innerText = `Sorry! You have an invalid username. Don't give up. Please try again!`;
+    loginForm.reset();
+  } else if(string === "traveler" && password.value !== "travel") {
+    loginErrorSection.classList.remove("hidden");
+    loginErrorSection.innerText = `Sorry! You have an incorrect password. Don't give up. Please try again!`;
+    loginForm.reset();
+  } else if (string === "traveler" || password.value !== "travel") {
+     loginErrorSection.classList.remove("hidden");
+     loginErrorSection.innerText = `Sorry! You have an incorrect username and password combination. Don't give up. Please try again!`;
+     loginForm.reset();
+  }
+}
 
 const createDropdown = () => {
   allDestinations.data
@@ -113,13 +163,13 @@ const createTrip = (object) => {
       }
       return response.json()
     })
-    .then((data)=> {
+    .then((data) => {
       console.log(data, "data")
       postPendingTrip()
     })
-    return fetchAllTrips()
+  return fetchAllTrips()
     .then((tripData) => {
-          allTrips = new TripRepo(tripData);
+      allTrips = new TripRepo(tripData);
     })
     .catch((error) => {
       console.log(error)
@@ -145,14 +195,15 @@ submitTripButton.addEventListener("click", function (event) {
     suggestedActivities: [],
   };
   createTrip(tripObject)
-   setTimeout(() => {
-     calculateTotalSpent(currentTraveler, allDestinations, allTrips);
-   }, 3000);
-   clearSearchInputs()
+  renderPendingTrips(currentTraveler);
+  setTimeout(() => {
+    calculateTotalSpent(currentTraveler, allDestinations, allTrips);
+  }, 3000);
+  clearSearchInputs()
 })
 
 const postPendingTrip = () => {
-   userWelcomeCard.innerHTML = `  "Groovy! 🪩 Your trip has been requested and is pending. Get excited! You should hear back from an agent shortly."
+  userWelcomeCard.innerHTML = `  "Groovy! 🪩 Your trip has been requested and is pending. Get excited! You should hear back from an agent shortly."
       <div class="navigation-user-card"></div>`
 }
 
@@ -216,9 +267,13 @@ const renderUpcomingTrips = (allTrips, currentTraveler, date) => {
 
 const renderPastTrips = (allTrips, currentTraveler, date) => {
   let trips = allTrips.returnPastTrips(currentTraveler.id, date);
+  console.log(usersCard, "userscard")
   usersCard.innerHTML = " ";
   trips.forEach((trip) => {
-    console.log(trip.id, "trip")
+    console.log(
+      allDestinations.getSingleDestinationById(trip.destinationID).destination,
+      "trip.D.ID"
+    );
     usersCard.innerHTML += `
     <section class="card" id="usersCard">
      <p class="card-title">${
