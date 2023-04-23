@@ -160,6 +160,10 @@ header {
   color: #FF6A2C;
 }
 
+.card-holder-img{
+  width:100%;
+}
+
 .main-title {
   display: flex;
   justify-content: center;
@@ -191,7 +195,7 @@ header {
 .card-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-column-gap: 4%;
+  grid-column-gap: 5%;
   grid-row-gap: 7%;
 }
 
@@ -216,9 +220,6 @@ img {
   margin-bottom: 10%;
 }
 
-.stripes {
-  display:flex; 
-}
 .card-text {
   background-color: #D9D9D9;
 }
