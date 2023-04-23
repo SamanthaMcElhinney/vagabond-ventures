@@ -8,6 +8,22 @@ body {
   background-color: #026F95;
   font-family: 'Quicksand', sans-serif;
 }
+h1 {
+  font-size: 2.2em;
+}
+
+h2 {
+  font-size: 1.7em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+p {
+  font-size: 1.10em;
+  margin: 2px;
+}
 
 body {
   position: absolute;
@@ -64,8 +80,8 @@ header {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: flex-end;
 }
+
 
 -------------------------------NAVIGATION ELEMENTS------------------------------- 
 
@@ -196,18 +212,26 @@ header {
 
 img {
   height: 150px;
-  width: 100%;
+  /* width: 100%; */
   margin-bottom: 10%;
 }
 
+.stripes {
+  display:flex; 
+}
 .card-text {
   background-color: #D9D9D9;
 }
 
   -------------------------------Login Section------------------------------- 
 
-  .login-page{
+  /* .login-page{
     display: flex;
+        display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: stretch;
+    justify-content: center;
   }
 
   .container-login-section {
@@ -221,13 +245,14 @@ img {
   }
 
 
-  .login-title {
-    display: flex;
-    color:  #FF6A2C;
-  }
-  
   .login-container {
     margin: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-content: stretch;
+    align-items: center;
   }
   
   .login-button {
@@ -235,10 +260,8 @@ img {
     width: 100px;
   }
   
-  .login-username-container, .login-password {
-    margin-bottom:30px;
-  }
-  
+
+
   
   .image-login-page {
     display: flex;
@@ -248,8 +271,52 @@ img {
   
   .image-login {
     height: 300px !important;
+  } */
+
+  .login-page-stripes{
+    display: flex;
+    height: 100%;
+    width: 30%
   }
+  
+  .image-stripes{
+    height: 100vh;
+    margin-right: 200px;
+  }
+  
+  .container-login-section {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-left: 50px;
+    align-content: stretch;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .login-title {
+    display: flex;
+    color:  #FF6A2C;
+  }
+  
+  
+  .login-container {
+    margin: 30px;
+  }
+  
+  .login-button {
+    background-color: #FF6A2C;
+    width: 100px;
+  }
+  .login-username-container, .login-password {
+    margin-bottom:30px;
+  }
+
+  .login-page {
+    display:flex;
+    justify-content: flex-start;
+  }
+  
   .hidden {
     display: none;
   }
-  
