@@ -285,6 +285,7 @@ img {
   }
   
   .container-login-section {
+    margin-top: -150px;
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
@@ -308,10 +309,18 @@ img {
     background-color: #FF6A2C;
     width: 100px;
   }
+
+  .login-button:hover {
+    background-color: #06265a;
+    color: #FF6A2C;
+  }
   .login-username-container, .login-password {
     margin-bottom:30px;
   }
 
+  .time-to-travel {
+    display:flex;
+  }
   .login-page {
     display:flex;
     justify-content: flex-start;
