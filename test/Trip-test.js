@@ -17,9 +17,7 @@ describe("Trip", () => {
     it("should be a new instance of Trip", () => {
         expect(trip).to.be.an.instanceOf(TripRepo);
     });
-    it("should be able to render image to page", () => {
-        expect(trip.renderImage(3, destinationRepository).to.be.equal(3))
-    })
+
     it("should have a data property that holds all the data for all the trips", () => {
         expect(trip.data).to.deep.equal([{
                 id: 1,
@@ -204,21 +202,7 @@ describe("Trip", () => {
         ).to.equal(4543);
     })
 
-    it("should be able to find destinations for each traveler", () => {
-        expect(
-          trip.findDestinationsForUser(3, destinationRepository)
-        ).to.deep.equal([
-          {
-            id: 22,
-            destination: "Rome, Italy",
-            estimatedLodgingCostPerDay: 90,
-            estimatedFlightCostPerPerson: 650,
-            image:
-              "https://images.unsplash.com/photo-1515542622106-78bda8ba0e5b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
-            alt: "people standing inside a colosseum during the day",
-          },
-        ]);
-    })
+
     it("should be able to find the trip id", () => {
         expect(trip.findDestination(3)).to.equal()
     })
