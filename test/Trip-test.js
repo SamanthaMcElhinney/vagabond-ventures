@@ -10,8 +10,11 @@ describe("Trip", () => {
     let trip, destinationRepository;
 
     beforeEach(() => {
-        trip = new TripRepo(tripData)
+        trip = new TripRepo(tripData);
         destinationRepository = new DestinationRepository(destinationTestData);
+    });
+    it("should be a function", () => {
+        expect(TripRepo).to.be.a("function");
     });
 
     it("should be a new instance of Trip", () => {
@@ -189,21 +192,30 @@ describe("Trip", () => {
           },
         ]);
     })
+       it("should be able to find past trips taken by multiple travelers", () => {
+         expect(trip.returnPastTrips(3, "2023/06/23")).to.deep.equal([
+           {
+             id: 3,
+             userID: 3,
+             destinationID: 22,
+             travelers: 4,
+             date: "2022/05/22",
+             duration: 17,
+             status: "approved",
+             suggestedActivities: [],
+           },
+         ]);
+       });
     it("should return an empty array if there are no upcoming trips", () => {
-         expect(trip.returnFutureTrips(7, "2023/05/22")).to.deep.equal([])
-    })
+         expect(trip.returnFutureTrips(7, "2023/05/22")).to.deep.equal([]);
+    });
  
     it("shoulde be able to filter pending trips", () => {
-        expect(trip.returnPendingTrips(7)).to.have.a.lengthOf(0)
-    })
+        expect(trip.returnPendingTrips(7)).to.have.a.lengthOf(0);
+    });
     it("should be able to calculate total spent by traveler", () => {
         expect(
           trip.calculateTotalSpentByTraveler(3, destinationRepository)
         ).to.equal(4543);
-    })
-
-
-    it("should be able to find the trip id", () => {
-        expect(trip.findDestination(3)).to.equal()
-    })
+    });
 });
