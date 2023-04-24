@@ -13,6 +13,10 @@ describe("DestinationRepository", () => {
     destinations = new DestinationRepository(destinationTestData);
   });
 
+  it("should be a function", () => {
+    expect(DestinationRepository).to.be.a("function");
+  });
+
   it("should be a new instance of Traveler", () => {
     expect(destinations).to.be.an.instanceOf(DestinationRepository);
   });
@@ -94,9 +98,8 @@ describe("DestinationRepository", () => {
         image:
           "https://images.unsplash.com/photo-1534758607507-754e582adfa4?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
         alt: "a courtyard with trees and mountain in the distance",
-      })
-  })
-
+      });
+  });
   it("should be able to find destination by name", () => {
     expect(
       destinations.findDestinationByName("Willemstad, Curaçao")
@@ -107,9 +110,11 @@ describe("DestinationRepository", () => {
         image:
           "https://images.unsplash.com/photo-1541748603027-cbfefa3a6c8f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1952&q=80",
         alt: "brightly colored buildings near body of water"
-  })
-})
-  it("should be able to calculate total trip bcost", () => {
-    expect(destinations.calculateTotalTripCost(29, 1, 2)).to.equal(1386)
-  })
+  });
+});
+  it("should be able to calculate the total trip cost", () => {
+    expect(destinations.calculateTotalTripCost(29, 1, 2)).to.equal(1386);
+    expect(destinations.calculateTotalTripCost(49, 2, 2)).to.equal(1628);
+     expect(destinations.calculateTotalTripCost(25, 3, 7)).to.equal(2007.5);
+  });
 });
