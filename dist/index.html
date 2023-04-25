@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,13 +7,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/kool-beans" rel="stylesheet">
     <title>Vagabond Ventures</title>
   </head>
-
   <body>
     <header>
       <div class="header">
-        <h2 class="header-title">Just Take The Trip!</h2>
         <div class="header-container">
           <div class="logo">
             <img class="logo-image" src="./images/logo-main.png"
@@ -50,16 +48,12 @@
             <h2 class="hidden">Error</h2>
           </section>
           <section class="error-handling hidden" id="errorMessagePost"></section>
-          <section class="success-message hidden" id="successMessagePost"></section>
+          <section class="error-handling-form hidden" id="errorForm"></section>
         </form>
         <div class="navigation-user-card">
-          <h2 class="navigation-user-welcome">Welcome Back </h2>
-          <p class="navigation-stats-sent">Here are your stats</p>
-          <p class="navigation-stats-invested">You have invested in your happiness</p>
         </div>
       </nav>
       <main class="all-trips">
-        <!-- <h2 class="main-title">Your Trips</h2> -->
         <section class="main-container-buttons">
           <button class="main-button" id="pastTripsButton" type="button" name="button">Past trips</button>
           <button class="main-button" id="upcomingTripsButton" type="button" name="button">Upcoming Trips</button>
@@ -68,47 +62,39 @@
         <section class="error-handling-main" id="errorHandlingMain">
         </section>
         <section class="card-grid" id="cardGrid">
-          <!-- <section class="card" id="usersCard">
-            <p class="card-title">City, State</p>
-            <img class="card-holder-img" src="" alt="" alt="">
-            <div class=card-text>
-              <p class="card-travelers"><b>Travelers:</b></p>
-              <p class="card-start-date"><b>Start Date:</b></p>
-              <p class="card-duration"><b>Duration:</b></p>
-              <p class="card-status"><b>Status:</b></p>
-            </div>
-          </section> -->
         </section>
         </nav>
       </main>
     </section>
     <section class="login-page" id="loginPage">
       <section class="login-page-stripes">
-        <img class="image-stripes" src="./images/rainbow.jpg">
+        <img class="image-stripes" src="./images/rainbow.jpg" alt="retro stripes with white, blue, browns and oranges">
       </section>
+      <section class="image-plane" src=".images/plane-blue.png" alt="person with blue background and vintage plane flying anbe with red accents to match the person's hair">
+      <section class="background-image">
       <section class="container-login-section" id="container-login">
         <h1 class="login-title">Vegabond Ventures ✈︎</h1>
+                <h2 class="header-title">Just take the trip</h2>
         <form class="login-form" id="loginForm">
           <div class="login-container">
             <div class="login-username-container">
-              <label for="uname">Username</label>
+              <label for="username">Username:</label>
               <input type="text" id="username" placeholder="Enter Username" name="uname" required>
             </div>
             <div class="login-password">
-              <label for="psw"><b>Password</b></label>
-              <input type="password" placeholder="Enter Password" id="password" name="psw" required>
-                 <p class="login-error hidden" id="loginError">Incorrect username & password combination</p>
+              <label for="password"><b>Password:</b></label>
+              <input type="password" placeholder="Enter Password" id="password" class="password"name="psw" required>
+              <p class="login-error hidden" id="loginError"></p>
             </div>
             <button class="login-button" id="login-button" type="submit">Login</button>
-            </div>
+          </div>
+        </form>
+        </section>
       </section>
       </form>
       </div>
     </section>
     </section>
-    <!-- <img src="./images/turing-logo.png" alt="turing logo"> -->
-    <!-- Do not include the scripts.js or class files here - it is done by the webpack server -->
     <script src="bundle.js"></script>
   </body>
-
 </html>
