@@ -4,7 +4,7 @@
 Welcome to Vegabond Ventures, a web application that facilitates the efficient management and tracking of various trips for its users. This application, inspired by the iconic 1970s, empowers users to seamlessly view their past, present, and future trips while keeping a record of their expenses. With Vegabond Ventures, users can effortlessly book new trips and keep track of their spending all in one place.
 
 ## Preview of App
-![demo]()
+![demo](src/images/vagabond-travel.gif)
 
 ## Technologies Used
 ### Core
