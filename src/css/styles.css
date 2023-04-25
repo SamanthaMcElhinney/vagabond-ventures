@@ -120,7 +120,6 @@ header {
 
 .nav-section {
   display: flex;
-
 }
 
 .nav-greeting {
@@ -158,7 +157,7 @@ header {
   background-color: #D9D9D9;
   flex-direction: column;
   padding: 10px;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .estimated-button:hover,
@@ -168,16 +167,13 @@ header {
   transition: 0.7s;
 }
 
-.navigation-user-card {
-  color: #37261f;
-}
-
 .navigation-user-card:hover {
   background-color: #80B0A4;
   transition: 0.7s;
 }
 
-.nav-greeting {
+.navigation-user-welcome {
+  margin-top: -20px;
   font-weight: bolder;
   color: black;
 }
@@ -286,7 +282,6 @@ img {
 }
 
 -------------------------------Login Section------------------------------- .login-page-stripes {
-  display: flex;
   height: 100%;
   width: 20%;
 }
@@ -297,7 +292,6 @@ img {
 
 .container-login-section {
   margin-top: 0px;
-  display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   margin-top: 100px;
@@ -307,7 +301,6 @@ img {
 }
 
 .login-title {
-  display: flex;
   color: #FF6A2C;
   font-family: 'Kool Beans', sans-serif;
 }
@@ -328,11 +321,11 @@ img {
 }
 
 .login-username-container,
-.login-password {
+.login-password, .container-login-section, .login-page-stripes, .login-title {
   margin-bottom: 30px;
 }
 
-.time-to-travel {
+.time-to-travel, .login-error {
   display: flex;
 }
 
@@ -389,7 +382,6 @@ img {
 }
 
 .login-error  {
-  display:flex;
   margin: 10px;
 }
 .hidden {
