@@ -1,4 +1,3 @@
-html,
 body {
   position: absolute;
   width: 100%;
@@ -42,8 +41,6 @@ main {
 }
 
 -------------------------------HEADER ELEMENTS------------------------------- 
-
-
 .header-container, .logo, .header, .header-title {
   display: flex;
 }
@@ -60,7 +57,7 @@ main {
 }
 
 .header-title {
-  color: #37261f;
+  color: #ff9113;
   font-weight: bold;
   margin-top: -30px;
   font-size: 1.3em;
@@ -92,14 +89,12 @@ header {
   align-items: flex-start;
 }
 
-
 -------------------------------NAVIGATION ELEMENTS------------------------------- .estimated-quote-section {
   background-color: white;
 }
 .nav-section {
   display: flex;
-  flex-direction: column;
-  padding: 10px;
+ 
 }
 
 .nav-greeting {
@@ -161,26 +156,16 @@ header {
   color: black;
 }
 
--------------------------------Main Card Section------------------------------- .all-trips {
-  display: flex;
-}
+-------------------------------Main Card Section------------------------------- 
 
-.error-handling-main {
-  background-color: #D9D9D9;
-  color: #FF6A2C;
+.main-section-container {
+  height: 80%;
 }
 
 .card-holder-img {
   width: 100%;
 }
-
-.main-title {
-  display: flex;
-  justify-content: center;
-  color: #FF6A2C;
-}
-
-.main-section-container {
+.main-section-container, .main-title, .all-trips, .main-container-buttons {
   display: flex;
 }
 
@@ -194,7 +179,6 @@ header {
 }
 
 .main-container-buttons {
-  display: flex;
   padding: 10px;
   justify-content: center;
 }
@@ -214,103 +198,56 @@ header {
 .card {
   display: flex;
   flex-direction: column;
-  background-color: #80B0A4;
-  /* background-color: #5bb390; */
   justify-content: flex-start;
   height: 100%;
   width: 100%;
-  border: 2px solid grey;
+  border: 1px solid #37261f;
   border-radius: 2px;
   margin-bottom: 5px;
   padding: 5%;
-  background-color: #D9D9D9
+  background-color: antiquewhite;
 }
 
 img {
+  margin-bottom: 11%;
   height: 150px;
-  /* width: 100%; */
-  margin-bottom: 10%;
 }
 
 .card-text {
   background-color: #D9D9D9;
 }
 
--------------------------------Login Section-------------------------------
-
-/* .login-page-stripes {
+.card-title {
   display: flex;
-  height: 100%;
-  width: 30%
-}
-
-.image-stripes {
-  height: 100vh;
-  margin-right: 200px;
-}
-
-.container-login-section {
-  margin-top: 0px;
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
-  margin-left: 50px;
-  align-content: stretch;
+  font-weight: bold;
   justify-content: center;
-  align-items: center;
 }
 
-.login-title {
-  display: flex;
-  color: #FF6A2C;
-  font-family: 'Kool Beans', sans-serif;
-  font-weight: 100;
-                                      
+@media screen and (max-width: 1200px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 6%;
+    grid-row-gap: 5%;
+  }
 }
 
-.login-container {
-  margin: 30px;
-  color:antiquewhite;
+@media screen and (max-width: 1000px) {
+  .card-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 8%;
+    grid-row-gap: 3%;
+  }
 }
 
-.login-button {
-  background-color: #FF6A2C;
-  width: 100px;
+@media screen and (max-width: 700px) {
+  .card-grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 
-.login-button:hover {
-  background-color: #06265a;
-  color: #FF6A2C;
-}
-
-.login-username-container,
-.login-password {
-  margin-bottom: 30px;
-}
-
-.time-to-travel {
-  display: flex;
-}
-
-.login-page {
-  display: flex;
-  justify-content: flex-start;
-}
-
-
-.login-page {
-  display: flex;
-  background-image: url("../images/plane-blue.png");
-}
-
-.hidden {
-  display: none;
-}
- */
-
-
-
-
+-------------------------------Login Section-------------------------------
 
  .login-page-stripes {
   display: flex;
@@ -367,6 +304,51 @@ img {
   display: flex;
   justify-content: flex-start;
   background-image: url("../images/plane-blue.png");
+}
+
+@media (max-width: 1024px) {
+  .container-login-section {
+    margin-left: 100px;
+  }
+}
+
+@media (max-width: 768px) {
+  .login-page-stripes {
+    width: 100%;
+    height: 100%;
+  }
+
+  .image-stripes {
+    height: 50vh;
+  }
+
+  .container-login-section {
+    margin-top: 53px;
+    margin-left: 20px;
+  }
+
+  .login-container {
+    margin: 15px;
+  }
+
+  .login-username-container,
+  .login-password {
+    margin-bottom: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .login-title {
+    font-size: 24px;
+  }
+
+   .login-username-container,
+  .login-password {
+    margin-bottom: 15px;
+  }
+  .login-button {
+    width: 80px;
+  }
 }
 
 .hidden {
