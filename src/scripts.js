@@ -11,7 +11,6 @@ import TripRepo from "./classes/TripRepo";
 import "./images/logo-main.png";
 import "./images/rainbow.jpg";
 import "./images/login-logo.png";
-import "./images/time-to-travel.png";
 import "./images/plane-blue.png";
 
 //Third Party Library Imports
@@ -54,10 +53,10 @@ import {
 } from "./ApiCalls";
 
 window.addEventListener("load", () => {
-  loadPage();
+  getData();
 });
 
-const loadPage = () => {
+const getData = () => {
   Promise.all([fetchTravelers(), fetchAllTrips(), fetchAllDestinations()]).then(
     ([travelerData, tripData, destinationData]) => {
       allTravelers = new TravelerRepository(travelerData);
@@ -65,6 +64,9 @@ const loadPage = () => {
       allTrips = new TripRepo(tripData);
     }
   ).catch(error => {
+    loginErrorSection.classList.remove("hidden")
+    loginErrorSection.innerText = 
+    "Sorry failed to load. Please come again later! 🖤 ";
     console.log('Error fetching Data:', error.message);
   });
 };
