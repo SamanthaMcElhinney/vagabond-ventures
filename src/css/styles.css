@@ -40,14 +40,17 @@ main {
   flex-direction: column;
 }
 
--------------------------------HEADER ELEMENTS------------------------------- 
-.header-container, .logo, .header, .header-title {
+-------------------------------HEADER ELEMENTS------------------------------- .header-container,
+.logo,
+.header,
+.header-title {
   display: flex;
 }
 
 .logo {
-  height: 100%;
-  width: 125%;
+  position: relative;
+  height: auto;
+  max-width: 125%;
 }
 
 .header {
@@ -69,8 +72,8 @@ main {
   flex-direction: row;
 }
 
-.logo-image{
-  width: 95%;
+.logo-image {
+  width: 100%;
   height: 175px;
   margin-top: -20px;
   margin-bottom: -10px;
@@ -89,12 +92,35 @@ header {
   align-items: flex-start;
 }
 
+@media (max-width: 768px) {
+  .header-title {
+    font-size: 1em;
+    margin-top: -20px;
+  }
+
+  .logo-image {
+    max-height: 80% !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-title {
+    font-size: 0.9em;
+    margin-top: -10px;
+  }
+
+  .logo-image {
+    max-height: 60% !important;
+  }
+}
+
 -------------------------------NAVIGATION ELEMENTS------------------------------- .estimated-quote-section {
   background-color: white;
 }
+
 .nav-section {
   display: flex;
- 
+
 }
 
 .nav-greeting {
@@ -156,16 +182,27 @@ header {
   color: black;
 }
 
--------------------------------Main Card Section------------------------------- 
+@media only screen and (max-width: 768px) {
+  .nav-section {
+    width: 100%;
+  }
+  .trip-form {
+    flex-wrap: wrap;
+  }
+}
 
-.main-section-container {
+-------------------------------Main Card Section------------------------------- .main-section-container {
   height: 80%;
 }
 
 .card-holder-img {
   width: 100%;
 }
-.main-section-container, .main-title, .all-trips, .main-container-buttons {
+
+.main-section-container,
+.main-title,
+.all-trips,
+.main-container-buttons {
   display: flex;
 }
 
@@ -239,7 +276,7 @@ img {
   }
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 480px) {
   .card-grid {
     display: flex;
     flex-direction: column;
@@ -247,9 +284,7 @@ img {
   }
 }
 
--------------------------------Login Section-------------------------------
-
- .login-page-stripes {
+-------------------------------Login Section------------------------------- .login-page-stripes {
   display: flex;
   height: 100%;
   width: 20%;
@@ -264,7 +299,7 @@ img {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  margin-top:100px;
+  margin-top: 100px;
   margin-left: 200px;
   justify-content: center;
   align-items: center;
@@ -306,7 +341,7 @@ img {
   background-image: url("../images/plane-blue.png");
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1000px) {
   .container-login-section {
     margin-left: 100px;
   }
@@ -319,7 +354,7 @@ img {
   }
 
   .image-stripes {
-    height: 50vh;
+    height: 100vh;
   }
 
   .container-login-section {
@@ -339,18 +374,23 @@ img {
 
 @media (max-width: 480px) {
   .login-title {
-    font-size: 24px;
+    font-size: 20px;
   }
 
-   .login-username-container,
+  .login-username-container,
   .login-password {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
   }
+
   .login-button {
     width: 80px;
   }
 }
 
+.login-error  {
+  display:flex;
+  margin: 10px;
+}
 .hidden {
   display: none;
 }
