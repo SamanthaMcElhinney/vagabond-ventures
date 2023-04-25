@@ -236,11 +236,10 @@ const displayUser = (
   userWelcomeCard.innerHTML = ` <div class="navigation-user-card">
      <h2 class="navigation-user-welcome">Welcome back ${currentTraveler.returnTravelersFirstName()}!</h2>
      <p>I love that you are a ${currentTraveler.travelerType} ✨</p>
-     <p class="navigation-stats-sent">Here are your stats:</p>
         <p class="navigation-stats-invested">You have invested $ ${allTrips.calculateTotalSpentByTraveler(
           currentTraveler.id,
           allDestinations
-        )} in your happiness</p>
+        )} in your happiness. ☮ </p>
       </div>`;
 };
 
