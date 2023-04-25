@@ -66,15 +66,14 @@ const loadPage = () => {
     }
   ).catch(error => {
     console.log('Error fetching Data:', error.message);
-  })
-}
+  });
+};
 
 loginButton.addEventListener("click", (event) => {
   loginUser(event);
   displayUser(currentTraveler, allDestinations, allTrips);
   createDropdown(allDestinations);
   loginSection.classList.add("hidden");
-  // getAQuoteButton.disabled = true
 });
 
 //Event Listeners
@@ -110,15 +109,18 @@ const loginUser = (event) => {
     loginForm.reset();
   } else if (string !== "traveler" && password.value === "travel") {
     loginErrorSection.classList.remove("hidden")
-    loginErrorSection.innerText = `Sorry! You have an invalid username. Don't give up. Please try again!`;
+    loginErrorSection.innerText = `Sorry! You have an invalid username.
+    Please try again!`;
     loginForm.reset();
   } else if (string === "traveler" && password.value !== "travel") {
     loginErrorSection.classList.remove("hidden");
-    loginErrorSection.innerText = `Sorry! You have an incorrect password. Don't give up. Please try again!`;
+    loginErrorSection.innerText = `Sorry! You have an incorrect password. 
+    Please try again!`;
     loginForm.reset();
   } else if (string === "traveler" || password.value !== "travel") {
     loginErrorSection.classList.remove("hidden");
-    loginErrorSection.innerText = `Sorry! You have an incorrect username and password combination. Don't give up. Please try again!`;
+    loginErrorSection.innerText = `Sorry! You have an incorrect username and password.
+    Please try again!`;
     loginForm.reset();
   };
 };
@@ -302,7 +304,7 @@ const renderPendingTrips = (currentTraveler) => {
     trips.forEach((trip) => {
       usersCard.innerHTML += `
         <section class="card" id="usersCard">
-     <p class="card-title">${
+     <p class="card-title" class="bold-text">${
        allDestinations.getSingleDestinationById(trip.destinationID).destination
      }</p>
             <img class="card-holder-img" src="${
