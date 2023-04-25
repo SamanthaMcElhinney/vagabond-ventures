@@ -12,11 +12,12 @@ import "./images/logo-main.png";
 import "./images/rainbow.jpg";
 import "./images/login-logo.png";
 import "./images/time-to-travel.png";
+import "./images/plane-blue.png";
 
 //Third Party Library Imports
 const dayjs = require("dayjs");
 
-//query selectors:
+//Query Selectors:
 const pastTripsButton = document.querySelector("#pastTripsButton");
 const usersCard = document.querySelector("#cardGrid");
 const userWelcomeCard = document.querySelector(".navigation-user-card");
@@ -193,10 +194,10 @@ submitTripButton.addEventListener("click", function (event) {
     suggestedActivities: [],
   };
   createTrip(tripObject)
-  renderPendingTrips(currentTraveler);
   setTimeout(() => {
     calculateTotalSpent(currentTraveler, allDestinations, allTrips);
-  }, 3000);
+    renderPendingTrips(currentTraveler);
+  }, 1500);
   clearSearchInputs();
 });
 
