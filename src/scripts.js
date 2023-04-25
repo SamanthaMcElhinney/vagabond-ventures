@@ -65,6 +65,7 @@ const getData = () => {
       allTrips = new TripRepo(tripData);
     }
   ).catch(error => {
+    console.log(error)
     loginErrorSection.classList.remove("hidden");
     loginErrorSection.innerText =
       "Sorry failed to load. Please come again later! 🖤 ";
@@ -162,7 +163,7 @@ const createTrip = (object) => {
       },
     })
     .then(response => {
-      if (!response.ok || response.status >= 422) {
+      if (!response.ok || response.status === 422) {
         throw new Error("This is so embarressing, but there is an error with our server. We are working on it!")
       } else if (!response.ok) {
         throw new Error(error)
@@ -170,7 +171,7 @@ const createTrip = (object) => {
       return response.json();
     })
     .then(() => {
-      postPendingTrip();
+      displayPendingTripMessage();
     });
   return fetchAllTrips()
     .then((tripData) => {
@@ -179,7 +180,7 @@ const createTrip = (object) => {
     .catch((error) => {
       errorMessagePost.classList.remove("hidden")
       errorMessagePost.innerText =
-        `This is so embarressing, but there is an errora with our server: ${error}. We are working on it!`;
+        `This is so embarressing, but there is an error with our server: ${error}. We are working on it!`;
       clearSearchInputs();
     });
 };
@@ -191,7 +192,6 @@ submitTripButton.addEventListener("click", function (event) {
     postError.innerText = "Please fill out all information before submitting a trip."
   } else {
     postError.classList.add("hidden")
-    postError.innerText = ""
     const destinationId = allDestinations.data.find(
       (destination) => destination.destination === formDropdown.value
     );
@@ -210,18 +210,20 @@ submitTripButton.addEventListener("click", function (event) {
       calculateTotalSpent(currentTraveler, allDestinations, allTrips);
       renderPendingTrips(currentTraveler);
     }, 1500);
+    renderPendingTrips(currentTraveler)
     clearSearchInputs();
   }
 });
 
-const postPendingTrip = () => {
-  userWelcomeCard.innerHTML = "Groovy! 🪩 Your trip has been requested and is pending. Get excited! You should hear back from an agent shortly."
+const displayPendingTripMessage = () => {
+  userWelcomeCard.innerHTML = `  "Groovy! 🪩 Your trip has been requested and is pending. Get excited! You should hear back from an agent shortly."
+      <div class="navigation-user-card"></div>`;
 };
 
 const calculateTotalSpent = (currentTraveler, allDestinations, allTrips) => {
   userWelcomeCard.innerHTML = `
-        <h2 class="navigation-user-welcome">Good Choice ${currentTraveler.returnTravelersFirstName()} !</h2>
-       <p class="navigation-stats-invested"> You have invested more to your happiness. This is how much you've spent so far. Including the agent fee $${allTrips.calculateTotalSpentByTraveler(
+        <h2 class="navigation-user-welcome">Good Choice ${currentTraveler.returnTravelersFirstName()}</h2>
+       <p class="navigation-stats-invested"> You have invested more to your happiness. This is how much you've spent this year, including the agent fee $${allTrips.calculateTotalSpentByTraveler(
          currentTraveler.id,
          allDestinations
        )} </p>
