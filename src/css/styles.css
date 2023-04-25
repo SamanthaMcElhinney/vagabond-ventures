@@ -40,7 +40,8 @@ main {
   flex-direction: column;
 }
 
--------------------------------HEADER ELEMENTS------------------------------- .header-container,
+-------------------------------HEADER ELEMENTS------------------------------- 
+.header-container,
 .logo,
 .header,
 .header-title {
@@ -114,7 +115,8 @@ header {
   }
 }
 
--------------------------------NAVIGATION ELEMENTS------------------------------- .estimated-quote-section {
+-------------------------------NAVIGATION ELEMENTS------------------------------- 
+.estimated-quote-section {
   background-color: white;
 }
 
@@ -173,7 +175,7 @@ header {
 }
 
 .navigation-user-welcome {
-  margin-top: -20px;
+  margin-top: 10px;
   font-weight: bolder;
   color: black;
 }
