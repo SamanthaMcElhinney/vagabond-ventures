@@ -191,7 +191,8 @@ header {
   }
 }
 
--------------------------------Main Card Section------------------------------- .main-section-container {
+-------------------------------Main Card Section------------------------------- 
+.main-section-container {
   height: 80%;
 }
 
