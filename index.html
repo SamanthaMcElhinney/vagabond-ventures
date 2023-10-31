@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/kool-beans" rel="stylesheet">
+    <title>Vagabond Ventures</title>
+  </head>
+  <body>
+    <header>
+      <div class="header">
+        <div class="header-container">
+          <div class="logo">
+            <img class="logo-image" src="./images/logo-main.png"
+              alt="logo for Vagabond Ventures with rainbow sky and plane">
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="main-section-container hidden" id="mainSection">
+      <nav class="nav-section" id="tripPlanning">
+        <h2 class="nav-greeting">Let's Go Somewhere ✈︎ </h2>
+        <form class="trip-form" id="newTripForm">
+          <label for="calendarStart" id="calendarStartLabel" class="calendar-intake">Takeoff</label>
+          <input type="date" name="calendarStart" class="new-trip-intake" id="calendarStart" required>
+          <label class="duration" for="duration-input" id="duration">Duration</label>
+          <input for="duration" class="form duration-input" id="duration-input" type="number" required min="1"
+            minlength="1" aria-label="Duration" placeholder="Duration of Stay">
+          <label for="travelersInput" class="travelers-intake" id="traverlersIntakeLabel">Number of
+            Travelers</label>
+          <input type="number" name="travelersInput" class="travelers-input new-trip-input" id="travelersInput" min="1"
+            max="50" placeholder="Number of Travelers" aria-label="Number of Travelers" required>
+          <label for="destinations" id="destinationLabel" class="destinations-input">Destinations</label>
+          <select class="destinations new-trip-input" name="destinations" type="text" id="destinations" required>
+            <option class="destinations" value=" ">Destinations</option>
+          </select>
+          <div class="estimated-button-container">
+            <button class="estimated-button" id="estimateButton">Get a quote</button>
+            <button class="submit-button" id="submitButton">Submit Trip</button>
+          </div>
+          <section class="estimated-quote-section" id="estimatedQuote"></section>
+          <h2 class="trip-estimate hidden">Here is a trip estimate: </h2>
+          <section class="error-handling hidden" id="error-message">
+            <h2 class="hidden">Error</h2>
+          </section>
+          <section class="error-handling hidden" id="errorMessagePost"></section>
+          <section class="error-handling-form hidden" id="errorForm"></section>
+        </form>
+        <div class="navigation-user-card">
+        </div>
+      </nav>
+      <main class="all-trips">
+        <section class="main-container-buttons">
+          <button class="main-button" id="pastTripsButton" type="button" name="button">Past trips</button>
+          <button class="main-button" id="upcomingTripsButton" type="button" name="button">Upcoming Trips</button>
+          <button class="main-button" id="pendingTripsButton" type="button" name="button">Pending Trips</button>
+        </section>
+        <section class="error-handling-main" id="errorHandlingMain">
+        </section>
+        <section class="card-grid" id="cardGrid">
+        </section>
+        </nav>
+      </main>
+    </section>
+    <section class="login-page" id="loginPage">
+      <section class="login-page-stripes">
+        <img class="image-stripes" src="./images/rainbow.jpg" alt="retro stripes with white, blue, browns and oranges">
+      </section>
+      <section class="image-plane" src=".images/plane-blue.png" alt="person with blue background and vintage plane flying anbe with red accents to match the person's hair">
+      <section class="background-image">
+      <section class="container-login-section" id="container-login">
+        <h1 class="login-title">Vegabond Ventures ✈︎</h1>
+                <h2 class="header-title">Just take the trip</h2>
+        <form class="login-form" id="loginForm">
+          <div class="login-container">
+            <div class="login-username-container">
+              <label for="username">Username:</label>
+              <input type="text" id="username" placeholder="Enter Username" name="uname" required>
+            </div>
+            <div class="login-password">
+              <label for="password"><b>Password:</b></label>
+              <input type="password" placeholder="Enter Password" id="password" class="password"name="psw" required>
+              <p class="login-error hidden" id="loginError"></p>
+            </div>
+            <button class="login-button" id="login-button" type="submit">Login</button>
+          </div>
+        </form>
+        </section>
+      </section>
+      </form>
+      </div>
+    </section>
+    </section>
+    <script src="bundle.js"></script>
+  </body>
+</html>
