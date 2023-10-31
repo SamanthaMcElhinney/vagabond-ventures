@@ -16,4 +16,4 @@ function fetchAllDestinations() {
     .then((data) => data.destinations);
 }
 
-export {fetchTravelers, fetchAllTrips, fetchAllDestinations}
+export { fetchTravelers, fetchAllTrips, fetchAllDestinations };

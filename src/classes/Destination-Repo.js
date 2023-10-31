@@ -4,9 +4,7 @@ class DestinationRepository {
   }
 
   findMatchingTripToDestination(id) {
-    const tripData = this.data.filter(
-      (destination) => id === destination.id
-    );
+    const tripData = this.data.filter((destination) => id === destination.id);
     console.log(tripData);
     return tripData;
   }
