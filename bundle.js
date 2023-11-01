@@ -704,24 +704,49 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   fetchAllTrips: () => (/* binding */ fetchAllTrips),
 /* harmony export */   fetchTravelers: () => (/* binding */ fetchTravelers)
 /* harmony export */ });
+const BASE_URL = "https://travel-tracker-heroku-20221b185f69.herokuapp.com";
+
 function fetchTravelers() {
-  return fetch("http://localhost:3001/api/v1/travelers")
-    .then((response) => response.json())
-    .then((data) => data.travelers);
+  return fetch(`${BASE_URL}/travelers`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => data.travelers)
+    .catch((error) => {
+      console.error("Fetching travelers failed:", error);
+    });
 }
 
 function fetchAllTrips() {
-  return fetch("http://localhost:3001/api/v1/trips")
-    .then((response) => response.json())
-    .then((data) => data.trips);
+  return fetch(`${BASE_URL}/trips`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => data.trips)
+    .catch((error) => {
+      console.error("Fetching all trips failed:", error);
+    });
 }
 
 function fetchAllDestinations() {
-  return fetch("http://localhost:3001/api/v1/destinations")
-    .then((response) => response.json())
-    .then((data) => data.destinations);
+  return fetch(`${BASE_URL}/destinations`)
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => data.destinations)
+    .catch((error) => {
+      console.error("Fetching all destinations failed:", error);
+    });
 }
-
 
 
 
@@ -853,7 +878,7 @@ const loginButton = document.getElementById("login-button");
 const loginSection = document.querySelector("#loginPage");
 const loginForm = document.getElementById("loginForm");
 const mainSection = document.querySelector("#mainSection");
-const postError = document.getElementById("errorForm")
+const postError = document.getElementById("errorForm");
 
 //Global variables
 let allTrips;
@@ -870,18 +895,18 @@ window.addEventListener("load", () => {
 });
 
 const getData = () => {
-  Promise.all([(0,_ApiCalls__WEBPACK_IMPORTED_MODULE_9__.fetchTravelers)(), (0,_ApiCalls__WEBPACK_IMPORTED_MODULE_9__.fetchAllTrips)(), (0,_ApiCalls__WEBPACK_IMPORTED_MODULE_9__.fetchAllDestinations)()]).then(
-    ([travelerData, tripData, destinationData]) => {
+  Promise.all([(0,_ApiCalls__WEBPACK_IMPORTED_MODULE_9__.fetchTravelers)(), (0,_ApiCalls__WEBPACK_IMPORTED_MODULE_9__.fetchAllTrips)(), (0,_ApiCalls__WEBPACK_IMPORTED_MODULE_9__.fetchAllDestinations)()])
+    .then(([travelerData, tripData, destinationData]) => {
       allTravelers = new _classes_Traveler_Repo__WEBPACK_IMPORTED_MODULE_2__["default"](travelerData);
       allDestinations = new _classes_Destination_Repo__WEBPACK_IMPORTED_MODULE_1__["default"](destinationData);
       allTrips = new _classes_TripRepo__WEBPACK_IMPORTED_MODULE_4__["default"](tripData);
-    }
-  ).catch(error => {
-    console.log(error)
-    loginErrorSection.classList.remove("hidden");
-    loginErrorSection.innerText =
-      "Sorry failed to load. Please come again later! 🖤 ";
-  });
+    })
+    .catch((error) => {
+      console.log(error);
+      loginErrorSection.classList.remove("hidden");
+      loginErrorSection.innerText =
+        "Sorry failed to load. Please come again later! 🖤 ";
+    });
 };
 
 loginButton.addEventListener("click", (event) => {
@@ -918,13 +943,16 @@ const loginUser = (event) => {
     string === "traveler" &&
     Number(id) <= 50 &&
     Number(id) > 0 &&
-    password.value === "travel") {
-    currentTraveler = new _classes_Traveler__WEBPACK_IMPORTED_MODULE_3__["default"](allTravelers.getSingleTravelerById(Number(id)));
+    password.value === "travel"
+  ) {
+    currentTraveler = new _classes_Traveler__WEBPACK_IMPORTED_MODULE_3__["default"](
+      allTravelers.getSingleTravelerById(Number(id))
+    );
     loginSection.classList.add("hidden");
     mainSection.classList.remove("hidden");
     loginForm.reset();
   } else if (string !== "traveler" && password.value === "travel") {
-    loginErrorSection.classList.remove("hidden")
+    loginErrorSection.classList.remove("hidden");
     loginErrorSection.innerText = `Sorry! You have an invalid username.
     Please try again!`;
     loginForm.reset();
@@ -938,7 +966,7 @@ const loginUser = (event) => {
     loginErrorSection.innerText = `Sorry! You have an incorrect username and password.
     Please try again!`;
     loginForm.reset();
-  };
+  }
 };
 
 const createDropdownDestinations = () => {
@@ -956,56 +984,64 @@ const createDropdownDestinations = () => {
 const displayTripCost = (event) => {
   event.preventDefault();
   if (formDuration.value && formNumberTravelers.value && formStartDate.value) {
-    const destination = allDestinations.findDestinationByName(formDropdown.value);
+    const destination = allDestinations.findDestinationByName(
+      formDropdown.value
+    );
     const total =
       destination.estimatedLodgingCostPerDay * formDuration.value +
-      destination.estimatedFlightCostPerPerson * formNumberTravelers.value * 1.1;
-    const roundedTotal = Number(total).toFixed(2)
-    estimateQuoteSection.classList.remove("hidden")
-    estimateQuoteSection.innerText = `$${roundedTotal} for this new trip`
-  };
+      destination.estimatedFlightCostPerPerson *
+        formNumberTravelers.value *
+        1.1;
+    const roundedTotal = Number(total).toFixed(2);
+    estimateQuoteSection.classList.remove("hidden");
+    estimateQuoteSection.innerText = `$${roundedTotal} for this new trip`;
+  }
 };
 
 const createTrip = (object) => {
   fetch("http://localhost:3001/api/v1/trips", {
-      method: "POST",
-      body: JSON.stringify(object),
-      headers: {
-        "content-Type": "application/json",
-      },
-    })
-    .then(response => {
+    method: "POST",
+    body: JSON.stringify(object),
+    headers: {
+      "content-Type": "application/json",
+    },
+  })
+    .then((response) => {
       if (!response.ok || response.status === 422) {
-        throw new Error("This is so embarressing, but there is an error with our server. We are working on it!")
+        throw new Error(
+          "This is so embarressing, but there is an error with our server. We are working on it!"
+        );
       } else if (!response.ok) {
-        throw new Error(error)
+        throw new Error(error);
       }
       return response.json();
     })
-    
+    .then(() => {
+      displayPendingTripMessage();
+    });
   return (0,_ApiCalls__WEBPACK_IMPORTED_MODULE_9__.fetchAllTrips)()
     .then((tripData) => {
       allTrips = new _classes_TripRepo__WEBPACK_IMPORTED_MODULE_4__["default"](tripData);
     })
     .catch((error) => {
-      errorMessagePost.classList.remove("hidden")
-      errorMessagePost.innerText =
-        `This is so embarressing, but there is an error with our server: ${error}. We are working on it!`;
+      errorMessagePost.classList.remove("hidden");
+      errorMessagePost.innerText = `This is so embarressing, but there is an error with our server: ${error}. We are working on it!`;
       clearSearchInputs();
     });
 };
 
-//create named function
-
-submitTripButton.addEventListener("click", prepareForm)
-
-const prepareForm = (event) => {
-   event.preventDefault();
-  if (!formDuration.value || !formNumberTravelers.value || !formStartDate.value) {
-    postError.classList.remove("hidden")
-    postError.innerText = "Please fill out all information before submitting a trip."
+submitTripButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  if (
+    !formDuration.value ||
+    !formNumberTravelers.value ||
+    !formStartDate.value
+  ) {
+    postError.classList.remove("hidden");
+    postError.innerText =
+      "Please fill out all information before submitting a trip.";
   } else {
-    postError.classList.add("hidden")
+    postError.classList.add("hidden");
     const destinationId = allDestinations.data.find(
       (destination) => destination.destination === formDropdown.value
     );
@@ -1019,19 +1055,15 @@ const prepareForm = (event) => {
       status: "pending",
       suggestedActivities: [],
     };
-    createTrip(tripObject).then(() => {
-      calculateTotalcalculateTotalSpent(
-        currentTraveler,
-        allDestinations,
-        allTrips
-      );
+    createTrip(tripObject);
+    setTimeout(() => {
+      calculateTotalSpent(currentTraveler, allDestinations, allTrips);
       renderPendingTrips(currentTraveler);
-      displayPendingTripMessage()
-      clearSearchInputs();
-    });
+    }, 1500);
+    renderPendingTrips(currentTraveler);
+    clearSearchInputs();
   }
-}
- 
+});
 
 const displayPendingTripMessage = () => {
   userWelcomeCard.innerHTML = `  "Groovy! 🪩 Your trip has been requested and is pending. Get excited! You should hear back from an agent shortly."
@@ -1048,11 +1080,7 @@ const calculateTotalSpent = (currentTraveler, allDestinations, allTrips) => {
    `;
 };
 
-const displayUser = (
-  currentTraveler,
-  allDestinations,
-  allTrips
-) => {
+const displayUser = (currentTraveler, allDestinations, allTrips) => {
   userWelcomeCard.innerHTML = ` <div class="navigation-user-card">
      <h2 class="navigation-user-welcome">Welcome back ${currentTraveler.returnTravelersFirstName()}!</h2>
      <p>I love that you are a ${currentTraveler.travelerType} ✨</p>
@@ -1071,7 +1099,7 @@ const clearSearchInputs = () => {
 };
 
 const renderUpcomingTrips = (allTrips, currentTraveler, date) => {
-  let trips = allTrips.returnFutureTrips(currentTraveler.id, date)
+  let trips = allTrips.returnFutureTrips(currentTraveler.id, date);
   if (trips.length === 0) {
     usersCard.innerText = `
        Sorry ${currentTraveler.name}! You don't have any upcoming trips scheduled
@@ -1092,25 +1120,22 @@ const renderUpcomingTrips = (allTrips, currentTraveler, date) => {
        <p class="card-status"><b>Status: ${trip.status}</b></p>
        `;
     });
-  };
+  }
 };
 
 const renderPastTrips = (allTrips, currentTraveler, date) => {
   let trips = allTrips.returnPastTrips(currentTraveler.id, date);
   usersCard.innerHTML = " ";
   trips.forEach((trip) => {
-    (
-      allDestinations.getSingleDestinationById(trip.destinationID).destination,
-      "trip.D.ID"
-    );
+    allDestinations.getSingleDestinationById(trip.destinationID).destination,
+      "trip.D.ID";
     usersCard.innerHTML += `
     <section class="card" id="usersCard">
      <p class="card-title">${
        allDestinations.getSingleDestinationById(trip.destinationID).destination
      }</p>
             <img class="card-holder-img" src="${
-              allDestinations.getSingleDestinationById(trip.destinationID)
-                .image
+              allDestinations.getSingleDestinationById(trip.destinationID).image
             }" alt="" alt="">
       <p class="card-travelers"><b>Travelers: ${trip.travelers}</b></p>
       <p class="card-start-date"><b>Start Date: ${trip.date}</b></p>
@@ -1144,8 +1169,9 @@ const renderPendingTrips = (currentTraveler) => {
        <p class="card-status"><b>Status: ${trip.status}</b></p>
        `;
     });
-  };
+  }
 };
+
 })();
 
 /******/ })()
