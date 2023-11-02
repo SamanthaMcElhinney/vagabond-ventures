@@ -3,14 +3,14 @@ const path = require('path');
 module.exports = {
   "mode": "none",
   "entry": "./src/scripts.js",
-  "output": {
-    "path": __dirname + '/dist',
-    "filename": "bundle.js",
-    sourceMapFilename: "bundle.js.map"
-  },
-  devServer: {
-    contentBase: path.join(__dirname, 'dist')
-  },
+ output: {
+  path: path.resolve(__dirname, 'dist'),
+  filename: "bundle.js",
+  sourceMapFilename: "bundle.js.map"
+},
+devServer: {
+  contentBase: path.join(__dirname, 'public')
+},
   "devtool": "source-map",
   "module": {
     "rules": [
