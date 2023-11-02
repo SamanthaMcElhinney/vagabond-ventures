@@ -4,7 +4,8 @@ body {
   height: 100%;
   padding: 0;
   margin: 0;
-  background-color: #026F95;
+  /* background-color: #026F95; */
+  background-color: #116eab;
   font-family: 'Quicksand', sans-serif;
 }
 
@@ -43,47 +44,13 @@ main {
 -------------------------------HEADER ELEMENTS------------------------------- 
 .header-container,
 .logo,
-.header,
-.header-title {
+.header{
   display: flex;
 }
 
-.logo {
-  position: fixed;
-  height: auto;
-  max-width: 125%;
-}
-
-.header {
-  flex-direction: row-reverse;
-  align-content: space-between;
-  justify-content: center;
-  width:100%;
-  height:10%;
-}
-
-.header-title {
-  color: #ff9113;
-  font-weight: bold;
-  margin-top: -30px;
-  font-size: 1.3em;
-
-}
-
-.header-stripes {
-  flex-wrap: wrap;
-  flex-direction: row;
-}
-
-.logo-image {
-  width: 100%;
-  margin-top: -20px;
-  margin-bottom: -10px;
-}
 
 header {
-  position: relative;
-  display: flex;
+  display:flex;
   background-color: #37261f;
   height: 20%;
   width: 100%;
@@ -92,31 +59,15 @@ header {
   align-content: stretch;
   justify-content: center;
   align-items: flex-start;
+  min-height: 60px;
 }
 
-@media (max-width: 768px) {
-  .header-title {
-    font-size: 1em;
-    margin-top: -20px;
-  }
-
-  .logo-image {
-    max-height: 80% !important;
-  }
+.logo {
+  max-width: 125%;
+  margin-top:-10px;
 }
-
-@media (max-width: 480px) {
-  .header-title {
-    font-size: 0.9em;
-    margin-top: -10px;
-  }
-
-  .logo-image {
-    max-height: 60% !important;
-  }
-}
-
 -------------------------------NAVIGATION ELEMENTS------------------------------- 
+
 .estimated-quote-section {
   background-color: white;
 }
@@ -284,21 +235,25 @@ img {
   }
 }
 
--------------------------------Login Section------------------------------- .login-page-stripes {
-  height: 100%;
-  width: 20%;
+-------------------------------Login Section------------------------------- 
+.login-page {
+  display: flex;
+  justify-content: flex-start;
 }
 
-.image-stripes {
+.image-stripes{
+  display:flex;
+  width: 75%;
   height: 100vh;
 }
 
 .container-login-section {
+  flex-grow: 1; 
   margin-top: 0px;
   flex-direction: column;
-  flex-wrap: wrap;
-  margin-top: 100px;
-  margin-left: 200px;
+  flex-wrap: wrap; 
+  margin-top: 15vh;
+  margin-left: 20vh; 
   justify-content: center;
   align-items: center;
 }
@@ -330,12 +285,6 @@ img {
 
 .time-to-travel, .login-error {
   display: flex;
-}
-
-.login-page {
-  display: flex;
-  justify-content: flex-start;
-  background-image: url("../images/plane-blue.png");
 }
 
 @media (max-width: 1000px) {
@@ -384,6 +333,13 @@ img {
   }
 }
 
+.login-page {
+  display:flex;
+  height:100vh;
+  background-image: url("../images/plane-blue.png");
+  background-repeat: no-repeat;
+   background-position: right center; 
+}
 .login-error  {
   margin: 10px;
 }
