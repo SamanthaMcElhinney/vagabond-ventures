@@ -55,6 +55,8 @@ import {
 
 window.addEventListener("load", () => {
   getData();
+  username.value = "traveler02";
+  password.value = "travel";
 });
 
 const getData = () => {
@@ -162,36 +164,30 @@ const displayTripCost = (event) => {
 };
 
 const createTrip = (object) => {
-  fetch("http://localhost:3001/api/v1/trips", {
+  return fetch("https://travel-tracker-heroku-20221b185f69.herokuapp.com/trips", {
     method: "POST",
     body: JSON.stringify(object),
     headers: {
-      "content-Type": "application/json",
+      "Content-Type": "application/json",
     },
   })
     .then((response) => {
-      if (!response.ok || response.status === 422) {
-        throw new Error(
-          "This is so embarressing, but there is an error with our server. We are working on it!"
-        );
-      } else if (!response.ok) {
-        throw new Error(error);
+      if (!response.ok) {
+        throw new Error("Server responded with a status: " + response.status);
       }
       return response.json();
     })
-    .then(() => {
+    .then((data) => {
+      allTrips.data.push(data.newTrip);
       displayPendingTripMessage();
-    });
-  return fetchAllTrips()
-    .then((tripData) => {
-      allTrips = new TripRepo(tripData);
+      return fetchAllTrips(); 
     })
     .catch((error) => {
       errorMessagePost.classList.remove("hidden");
-      errorMessagePost.innerText = `This is so embarressing, but there is an error with our server: ${error}. We are working on it!`;
-      clearSearchInputs();
+      errorMessagePost.innerText = `An error occurred: ${error.message}`;
     });
 };
+
 
 submitTripButton.addEventListener("click", function (event) {
   event.preventDefault();
@@ -218,7 +214,17 @@ submitTripButton.addEventListener("click", function (event) {
       status: "pending",
       suggestedActivities: [],
     };
-    createTrip(tripObject);
+     createTrip(tripObject)
+       .then(() => {
+         calculateTotalSpent(currentTraveler, allDestinations, allTrips);
+         return renderPendingTrips(currentTraveler); // Assuming this is a synchronous operation
+       })
+       .then(() => {
+         clearSearchInputs();
+       })
+       .catch((error) => {
+         console.error("Error creating trip:", error);
+       });
     setTimeout(() => {
       calculateTotalSpent(currentTraveler, allDestinations, allTrips);
       renderPendingTrips(currentTraveler);

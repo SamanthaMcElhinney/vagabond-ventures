@@ -66,6 +66,35 @@ header {
   max-width: 125%;
   margin-top:-10px;
 }
+
+@media screen and (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    padding: 1em;
+    height: auto;
+  }
+  
+  .logo {
+    margin-top: 0;
+    width: auto; 
+    max-width: 100%; 
+  }
+
+  .header-container,
+  .header {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  header {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+}
 -------------------------------NAVIGATION ELEMENTS------------------------------- 
 
 .estimated-quote-section {
@@ -134,11 +163,67 @@ header {
 
 @media only screen and (max-width: 768px) {
   .nav-section {
-    width: 100%;
+    width: 100%; 
+    height: auto;
+    padding: 5px;
+    flex-direction: column; 
   }
+
   .trip-form {
+    width: auto; 
+  }
+
+  .estimated-button-container {
+    flex-direction: column;
+    align-items: center; 
+  }
+}
+
+@media only screen and (max-width: 480px) {
+
+  .nav-section {
+    flex-direction: column; 
+    padding: 2px; 
+    align-content: center;
+  }
+  .main-section-container {
+    flex-direction: column;
+    align-content: center;
+  }
+
+  .nav-section,
+  .navigation-user-card,
+  .estimated-button-container {
+    width: 80%; 
+    margin-bottom: 5px; 
+    box-sizing: border-box; 
+    padding:5px;
+    align-content: center;
     flex-wrap: wrap;
   }
+
+  .estimated-button-container {
+    flex-direction: column; 
+    align-items: center; 
+  }
+
+  .estimated-button-container button {
+    width: 100%; 
+    margin-bottom: 5px; 
+  }
+  .navigation-user-welcome,
+  .nav-greeting {
+    font-size: smaller;
+  }
+
+     .main-container-buttons {
+        display: flex;
+        flex-direction: column;
+      }
+      .main-button {
+        width: 100%; /* Makes buttons full width */
+        margin-bottom: 10px; /* Adds space between the buttons */
+      }
 }
 
 -------------------------------Main Card Section------------------------------- 
@@ -211,27 +296,31 @@ img {
   justify-content: center;
 }
 
-@media screen and (max-width: 1200px) {
+@media screen and (max-width: 768px) {
   .card-grid {
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 6%;
-    grid-row-gap: 5%;
-  }
-}
-
-@media screen and (max-width: 1000px) {
-  .card-grid {
-    grid-template-columns: 1fr 1fr;
-    grid-column-gap: 8%;
-    grid-row-gap: 3%;
+    grid-template-columns: repeat(2, 1fr); 
+    grid-gap: 4%; 
   }
 }
 
 @media screen and (max-width: 480px) {
   .card-grid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr;
+    row-gap: 50px
+  }
+
+  .main-section-container{
+    display:flex;
+    flex-wrap: wrap;
+    margin:10px;
+  }
+
+  .card {
+    width: 90%; 
+    margin: 0 auto; 
+    margin-top: 30px; 
+      margin-bottom: 10px;
   }
 }
 
@@ -293,6 +382,12 @@ img {
   background-image: url("../images/plane-blue.png");
   background-repeat: no-repeat;
    background-position: right center; 
+}
+
+.login-user-info{
+  color:#D9D9D9;
+  font-weight:900;
+
 }
 
 @media (max-width: 1000px) {
