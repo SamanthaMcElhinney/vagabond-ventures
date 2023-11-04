@@ -31,7 +31,7 @@
     "test": "mochapack 'test/**/*.js'",
     "lint": "./node_modules/.bin/eslint 'src/**.js' 'test/**.js'",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist -b gh-pages"
+    "deploy": "gh-pages -d dist -b git-pages"
   },
   "dependencies": {
     "dayjs": "^1.11.9"
