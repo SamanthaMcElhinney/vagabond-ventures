@@ -6,6 +6,9 @@ Welcome to Vegabond Ventures, a web application that facilitates the efficient m
 ## Preview of App
 ![demo](src/images/vagabond-travel.gif)
 
+## Deploy
+[Deployable Link](https://samanthamcelhinney.github.io/vagabond-ventures/)
+
 ## Technologies Used
 ### Core
 - Javascript
@@ -51,6 +54,12 @@ Welcome to Vegabond Ventures, a web application that facilitates the efficient m
 
 ## Features
 This application offers a seamless user experience with a login page and user dashboard that greets users and allows them to filter trips and plan new ones. Users can easily request a quote for a new trip by filling out a form in the sidebar, and upon submission, a visual confirmation is displayed, and the new trip is added to the dashboard with a status of "pending." This application's streamlined interface ensures that managing and tracking trips is effortless and intuitive.
+
+## Mobile View
+![TT-mobile](https://github.com/SamanthaMcElhinney/vagabond-ventures/assets/115356592/bd434ffa-85ef-48da-8975-3d4f82e367fd)
+
+## Wireframe
+![TT-Wireframe](https://github.com/SamanthaMcElhinney/vagabond-ventures/assets/115356592/ca153d62-d707-42f5-9a31-429e88cfdae0)
 
 ## Contributors
 
